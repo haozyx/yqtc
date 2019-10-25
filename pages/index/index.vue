@@ -3,11 +3,9 @@
 		 <!-- 搜索框 start-->
 			<view class="searchwrap bcolor">
 				<view class="bodysearch">
-					<image src="../../static/img/index/search.png" class="searchimg"></image>
-					<input class="searchtext" type="text" maxlength="20" placeholder="找工作|搜房子" placeholder-style="searchhint"/>
-					<view class="searchbtn">
-						搜索
-					</view>
+					<view style="width: 15%;height: 30px; border-right: #007AFF 1px solid;"> <image src="../../static/img/index/search.png" class="searchimg"></image></view>
+					<view style="width: 60%;"><input class="searchtext" type="text" maxlength="20" placeholder="找工作 | 租房子 | 看同城" placeholder-style="searchhint"/></view> 
+					<view style="width: 15%;"><view class="searchbtn"> 搜索 </view></view>
 				</view>
 				<view class="bottomview">
 					本站浏览1205.34万  发布总量:5600

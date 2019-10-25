@@ -1,10 +1,9 @@
 /* 搜索框样式  start*/
 .searchwrap{
-	height: 200px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	padding: 20upx;
+	padding: 20upx 20upx;
 	
 }
 	
@@ -13,13 +12,21 @@
 	flex-direction: row;
 	color: #007AFF;
 	background-color: #FFFFFF;
-	height: 40px;
+	height: 30px;
 	border-radius: 5px;
 	padding: 10upx;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: center;
 }
 .searchimg{
 	width: 30px;
 	height: 30px;
+}
+.searchtext{
+	color: #2C405A;
+}
+.bottomview{
+	color: #FFFFFF;
+	font-size: 14px;
+	margin-top: 10upx;
 }
