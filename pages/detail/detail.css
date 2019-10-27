@@ -1,0 +1,8 @@
+.carousel{
+	width: 100%;
+	height: 193upx;
+}
+/* 覆盖组件内的样式 */
+>>> .rightsee{
+	display: none !important;
+}

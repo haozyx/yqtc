@@ -1,0 +1,136 @@
+/* list列表 start 要分为6类*/
+.listwrap{
+	display: flex;
+	flex-direction: row;
+	padding: 20upx 20upx 10upx 20upx;
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #EEE;
+}
+.contentwrap{
+	width: 90%;
+}
+.leftimg{
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+	flex-shrink: 0;
+}
+.titlewrap{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+.eyeimg{
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+}
+.title-fl{
+	background: #FF7F00;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+.title-nicheng{
+	color: #758096;
+	margin-left: 10px;
+	width: 100px;
+	font-size: 14px;
+	/* 添加省略号 */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.rightsee{
+	display: flex;
+	flex-direction: row;  
+	font-size: 14px;
+	color: #999999;
+	margin-left: auto;
+}
+
+/* 内容中的图片 */
+.cont-img-wrap{
+	display: flex;
+	flex-direction: row;
+	height: 80px;
+	width: 240px;
+	margin-top: 5px;
+	flex-wrap: wrap;
+	overflow: hidden;
+}
+.cont-img-wrap.active{
+	height: auto;
+	min-height: 100px;
+}
+.cont-img{
+	width: 80px;
+	height: 80px;
+}
+.moreimg-wrap{
+	position: relative;
+}
+.moreimg-text{
+	position:absolute; 
+	z-index:2; 
+	top: 0;
+	left: 0;
+	color:#FFFFFF;
+	font-size: 12px;
+	width: 80px;
+	line-height: 80px;
+	height: 80px;
+	text-align: center;
+	background-color:rgba(0,0,0,0.4);
+}
+.showmore{
+	display: none;
+}
+
+
+.contentbody{
+	font-size: 14px;
+	margin-top: 10px;
+	height: 58px;
+	overflow: hidden;
+}
+.contentbody.active{
+	height: auto;
+	min-height: 100px;
+}
+
+.content-tag{
+	display: inline-block;
+	color:#FF7F00;
+	font-size: 14px;
+	font-weight: bold;
+}	
+
+
+.callphone{
+	display: inline-block;
+	margin-top: 5px;
+	background-color: #35A6EE;
+	color: #FFFFFF;
+	padding: 4px;
+	border-radius: 5px;
+	margin-right: 5px;
+}
+.sendmsg{
+	display: inline-block;
+	margin-top: 5px;
+	background-color: #FFFFFF;
+	color: #000000;
+	padding: 4px;
+	border-radius: 5px;
+	margin-right: 5px;
+	border: 1px solid #D9D9D9;
+}
+.disall{
+	color: #35A6EE;
+	margin-top: 5px;
+	font-size: 14px;
+}
+.content-phone{
+	font-weight: bold;
+	margin-top: 5px;
+}

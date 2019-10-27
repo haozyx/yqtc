@@ -1,0 +1,36 @@
+/* 头部信息 start */
+.headwrap{
+	display: flex;
+	flex-direction: row;
+	padding: 20upx 20upx 40upx 20upx;
+}
+.imgwrap{
+	position: relative;
+}
+.tximg{
+	width: 80px;
+	height: 80px;
+	border: 1px solid #81ac97;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+.seximg{
+	width: 20px;
+	height:20px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.bodywrap{
+	background-color: #ecf2ef;
+	padding: 20upx;
+	width: 80%;
+}
+.infoitem{
+	font-size: 14px;
+	margin-top: 5px;
+}
+.jiacu{
+	font-weight: bold;
+}
+/* 头部信息 end */

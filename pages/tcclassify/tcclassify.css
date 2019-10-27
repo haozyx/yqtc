@@ -25,42 +25,11 @@
 .searchtext{
 	color: #2C405A;
 }
-.bottomview{
-	color: #FFFFFF;
-	font-size: 14px;
-	margin-top: 10upx;
-}
 .searchbtn{
 	font-size: 18px;
 	font-weight: bold;
 }
 /* 搜索框样式 end */
-/* 分类图标  start*/
-.classify{
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	flex-wrap: wrap;
-	flex-shrink: 1;
-	background: #FFFFFF;
-}
-.clzwraper{
-	display: flex;
-	flex-direction: column;
-	margin: 20upx 2upx 10upx 2upx;
-	width: 180upx;
-	align-items: center;
-}
-.clzimg{
-	width: 40px;
-	height: 40px;
-	margin-bottom: 5px;
-}
-.clztext{
-	font-size: 12px;
-	font-weight: bold;
-}
-/* 分类图标  end*/
 
 /* 首页导航 start */
 .infowrap{
@@ -71,7 +40,7 @@
 	width: 100%;
 	background-color: #FFFFFF;
 	justify-content: center;
-	border-bottom: 1px solid #999999;
+	border-bottom: 1px solid #EEEEEE;
 }
 .infoitem{
 	/* color: #C8C7CC; */
@@ -91,12 +60,3 @@
 	margin-left: 10px;
 }
 /* 首页导航 end */
-
-
-
-
-
-
-
-
-	
