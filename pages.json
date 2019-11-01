@@ -15,7 +15,22 @@
         ,{
             "path" : "pages/perinfos/perinfos",
             "style" : {}
+        },{
+            "path" : "pages/changepage/changepage",
+            "style" : {"titleNView":false}
         }
+		,{
+		    "path" : "pages/publish/publish",
+		    "style" : {"titleNView":false}
+		},
+		{
+		    "path" : "pages/phonebook/phonebook",
+		    "style" : {"titleNView":false}
+		}
+		,{
+		    "path" : "pages/me/me",
+		    "style" : {"titleNView":false}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -32,14 +47,26 @@
 			{
 				"pagePath":"pages/index/index",
 				"text":"首页",
-				"iconPath":"static/img/tabbar/heart.png",
-				"selectedIconPath":"static/img/tabbar/heart_sel.png"
+				"iconPath":"static/img/tabbar/main.png",
+				"selectedIconPath":"static/img/tabbar/main_sel.png"
 			},
 			{
-				"pagePath":"pages/message/message",
-				"text":"消息",
-				"iconPath":"static/img/tabbar/message.png",
-				"selectedIconPath":"static/img/tabbar/message_sel.png"
+				"pagePath":"pages/changepage/changepage",
+				"text":"客服",
+				"iconPath":"static/img/tabbar/kefu.png",
+				"selectedIconPath":"static/img/tabbar/kefu_sel.png"
+			},
+			{
+				"pagePath":"pages/publish/publish",
+				"text":"发布",
+				"iconPath":"static/img/tabbar/jia.png",
+				"selectedIconPath":"static/img/tabbar/jia_sel.png"
+			},
+			{
+				"pagePath":"pages/phonebook/phonebook",
+				"text":"通讯录",
+				"iconPath":"static/img/tabbar/phone.png",
+				"selectedIconPath":"static/img/tabbar/phone_sel.png"
 			},
 			{
 				"pagePath":"pages/me/me",

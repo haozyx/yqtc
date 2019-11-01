@@ -1,0 +1,101 @@
+/* 发布页头部 start */
+.headwrap{
+	display: flex;
+	flex-direction: column;
+	padding: 40upx;
+	background-color: #FFFFFF;
+	box-shadow: 1px 2px 2px #C8C7CC;
+}
+.title{
+	background-color: #F0F9FF;
+	font-size: 16px;
+	color: #C4C8CB;
+	padding: 20upx;
+}
+
+.lanmu{
+	text-align: center;
+	font-size: 14px;
+	color: #B3B3B3;
+	margin-top: 20px;
+}
+/* 发布页头部 end */
+/* 分类图标  start*/
+.classify{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	flex-shrink: 1;
+	background: #FFFFFF;
+	box-shadow: 1px 2px 10px #E9F0F6;
+}
+.clzwraper{
+	display: flex;
+	flex-direction: column;
+	margin: 20upx 2upx 10upx 2upx;
+	width: 180upx;
+	align-items: center;
+}
+.clzimg{
+	width: 40px;
+	height: 40px;
+	margin-bottom: 5px;
+}
+.clztext{
+	font-size: 12px;
+	font-weight: bold;
+}
+
+/* 分类图标  end*/
+
+/* 所有的二级弹出层 start */
+.itemwrap{
+	flex-direction: column;
+	width: 300px;
+	background-color: #fff;
+	border-radius: 10px;
+	display: flex;
+}
+.item-text{
+	height: 60upx;
+	line-height: 60upx;
+	padding: 20upx;
+	border-bottom: #F1F1F1 solid 1px;
+	font-size: 16px;
+	color: #333;
+}
+.itemwrap-bottom{
+	display: flex;
+	flex-direction: column;
+	background-color: #fff;
+}
+ .item-text-center{
+ 	height: 60upx;
+ 	line-height: 60upx;
+ 	padding: 20upx;
+ 	border-bottom: #F1F1F1 solid 1px;
+ 	font-size: 16px;
+ 	color: #333;
+	text-align: center;
+ } 
+.noboder{
+	border: none;
+}
+.twoitem{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.item-text-one{
+	height: 60upx;
+	line-height: 60upx;
+	padding: 20upx;
+	border-bottom: #F1F1F1 solid 1px;
+	font-size: 16px;
+	color: #333;
+	text-align: center;
+	flex: 0 0 43%;
+}
+/* 所有的二级弹出层 end */
