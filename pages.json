@@ -31,6 +31,14 @@
 		    "path" : "pages/me/me",
 		    "style" : {"titleNView":false}
 		}
+        ,{
+            "path" : "pages/publish/chezhaoren/chezhaoren",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/clause/clause",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

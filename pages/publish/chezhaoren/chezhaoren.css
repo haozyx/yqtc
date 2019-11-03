@@ -1,0 +1,200 @@
+/*  表单项开始 */
+.textwrap{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	font-size: 14px;
+	height: 60px;
+	padding: 0 20upx;
+	align-items: center;
+}
+
+.leftwrap{
+	display: flex;
+	flex-direction: row;
+}
+.leftimg{
+	width: 25px;
+	height: 25px;
+}
+.lefttext{
+	margin-left: 5px;
+	height: 25px;
+	line-height: 25px;
+	width: 130upx;
+	text-align: right;
+}
+.rightwrap{
+	display: flex;
+	flex-direction: row;
+}
+.righttext{
+	margin-right: 10px;
+	width: 300upx;
+	text-align: right;
+}
+
+.textareawrap{
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	padding: 0 30upx;
+	align-items: flex-start;
+}
+.top-text{
+	padding: 20upx 0;
+/* 	margin-left: 10px; */
+	height: 25px;
+	line-height: 25px;
+	width: 130upx;
+	text-align: center;
+}
+.hintcolor{
+	color: #A6A8A9;
+}
+.textarea{
+	background-color: #F0F5F8;
+	width: 95%;
+	height: 80px;
+	padding: 20upx;
+	margin-bottom: 15px;
+}
+
+.you{
+	width: 30px;
+	height: 30px;
+}
+.input{
+	width: 500upx;
+	margin-left: 40upx;
+}
+.line-wrap{
+	/* 覆盖父页面的配置 */
+	padding: 0;
+}
+ 
+/* 表单项 结束 */
+
+
+/* 标签项 start */
+.tagview{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 0 30upx;
+}
+.tagwrap{
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+
+/* 标签项 end */
+
+/* 图片上传 start */
+.page-gray{
+		width: 100%;
+		height: 100%;
+		background-color: #F7F7F7;
+	 	position: absolute; 
+}
+.photowrap{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+.title{
+	width: 100%;
+	height: 100upx;
+	line-height: 100upx;
+	padding:0 40upx;
+	font-size: 20px;
+	background-color: #FFFFFF;
+}
+.upload-text{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 0 40upx;
+	font-size: 14px;
+	background-color: #FFFFFF;
+}
+.left-text{
+	padding: 20upx 0;
+}
+.right-text{
+	padding: 20upx 0;
+}
+
+.myphoto{
+	background-color: #FFFFFF;
+	padding: 0upx 40upx 10px 40upx;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+.photo-single{
+	width: 200upx;
+	height: 200upx;
+	margin-right: 20upx;
+	margin-top: 20upx;
+}
+.jia{
+	border: #CCCCCC 1px solid;
+}
+.photo-close{
+	position: relative;
+}
+.photo-x{
+	position: absolute;
+	top:20upx;
+	right: 20upx;
+	width: 12px;
+	height: 12px;
+	background-color: #888888;
+}
+ 
+.jiaimg{
+	width: 200upx;
+	height: 200upx;
+	border-radius: 0px;
+}
+
+/* 图片上传end */
+
+/* 发布须知 */
+.spanview{
+	display: inline-block;
+	color: red;
+	text-decoration:underline;
+	margin-left: 2px;
+}
+
+.publishbtn{
+	width:90%;
+	background-color: #007AFF;
+	color: #FFFFFF;
+	margin: 20px;
+}	
+/* 发布须知 */
+
+
+/* 招聘求职 */
+.zhaopinwrap{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	font-size: 14px;
+	padding: 0 20upx;
+	align-items: center;
+	margin-top: 5px;
+}
+.sexwrfap{
+	display: flex;
+	flex-direction: row;
+}
+.sexlabel{
+	margin-left: 5px;
+}

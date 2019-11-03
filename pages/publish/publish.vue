@@ -17,6 +17,7 @@
 			</block>
 		</view>
 		<!-- 栏目分类 end-->
+		
 		<!-- 各个分类下的弹出层 start -->
 		<view>
 			<!-- 顺风车 -->
@@ -25,7 +26,7 @@
 					<view class="item-text">
 						请选择发布类型
 					</view>
-					 <view class="item-text">
+					 <view class="item-text" @tap="gotochezhaoren">
 					 	车找人
 					 </view>
 					 <view class="item-text">
@@ -160,6 +161,11 @@
 					break;
 				}
 				
+			},
+			gotochezhaoren(){
+				uni.navigateTo({
+					url:'/pages/publish/chezhaoren/chezhaoren'
+				})
 			}
 		}
 	}
