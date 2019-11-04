@@ -141,6 +141,122 @@
 			</view>
 		</block>
 		
+		<!-- 本地服务模块 start-->
+		
+		<block v-if="publishtype=='bendifuwu'">
+			<view class="textareawrap">
+				<view class="top-text">内容描述 :</view>
+				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
+				placeholder="简要介绍服务内容,为保护隐私,请不要填写手机,QQ!"></textarea>
+			</view>
+			
+			
+			
+		</block>
+		
+		<!-- 本地服务模块 end-->
+		
+		<!-- 房屋租售模块 start -->
+		<block v-if="publishtype=='fangwuzushou'">
+			<view class="textareawrap">
+				<view class="top-text">房屋描述 :</view>
+				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
+				placeholder="简要说明房屋信息,交通情况及周边配套信息,为保护隐私,请不要填写手机,QQ!"></textarea>
+			</view>
+			<view class="line-wrap"><view class="line"></view></view>
+			<view class="textwrap">
+				<view class="leftwrap">
+					<view class="lefttext">房屋位置 :</view>
+					<input class="input" placeholder="请输入小区名称或者房屋位置" />
+				</view>
+				<view class="rightwrap"><fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon></view>
+			</view>
+			<view class="line-wrap"><view class="line"></view></view>
+			<view class="textwrap">
+				<view class="leftwrap"><view class="lefttext">装修情况 :</view></view>
+				<view class="rightwrap">
+					<view class="righttext" @tap="showzxqkPicker">{{ zhuangxiuqingkuang }}</view>
+					<fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon>
+				</view>
+			</view>
+			<view class="line-wrap"><view class="line"></view></view>
+		
+		</block>
+		
+		<block v-if="publishtype=='qiuzufangwu'">
+			<view class="textareawrap">
+				<view class="top-text">需求描述 :</view>
+				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
+				placeholder="简要说明期望户型、面积、位置、租期、租金、特殊要求等,为保护隐私,请不要填写手机,QQ!"></textarea>
+			</view>
+		</block>
+		
+		<block v-if="publishtype=='qiugoufangwu'">
+			<view class="textareawrap">
+				<view class="top-text">需求描述 :</view>
+				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
+				placeholder="简要说明期望户型、面积、位置、产权、价格等,为保护隐私,请不要填写手机,QQ!"></textarea>
+			</view>
+		</block>
+		<!-- 房屋租售模块 end -->
+		<!-- 生意装让 start -->
+		<block v-if="publishtype=='shengyizhuanrang'">
+			<view class="textwrap">
+				<view class="leftwrap"><view class="lefttext">所属行业 :</view></view>
+				<view class="rightwrap">
+					<view class="righttext" @tap="showsyhyPicker">{{ shengyihangye }}</view>
+					<fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon>
+				</view>
+			</view>
+			<view class="line-wrap"><view class="line"></view></view>
+			<view class="textareawrap">
+				<view class="top-text">描述 :</view>
+				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
+				placeholder="简要说明期望户型、面积、位置、产权、价格等,为保护隐私,请不要填写手机,QQ!"></textarea>
+			</view>
+		</block>
+		
+		<!-- 生意装让 end -->
+		<!-- 汽车交易 start -->
+		<block v-if="publishtype=='qichejiaoyi'">
+			<view class="textwrap">
+				<view class="leftwrap"><view class="lefttext">车辆级别 :</view></view>
+				<view class="rightwrap">
+					<view class="righttext" @tap="showcljbPicker">{{ cheliangjibie }}</view>
+					<fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon>
+				</view>
+			</view>
+			<view class="line-wrap"><view class="line"></view></view>
+			<view class="textareawrap">
+				<view class="top-text">描述 :</view>
+				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
+				placeholder="简要说明期望户型、面积、位置、产权、价格等,为保护隐私,请不要填写手机,QQ!"></textarea>
+			</view>
+		</block>
+		<!-- 汽车交易 end -->
+		
+		<!-- 二手交易 start -->
+		<block v-if="publishtype == 'ershoujiaoyi'">
+			<view class="textwrap">
+				<view class="leftwrap"><view class="lefttext">发布类型 :</view>
+					<!-- 类型选择框 -->
+					<view class="sexrap">
+						<radio-group  @change="eswupinChange">
+							<label class="sexlabel"><radio style="transform:scale(0.7)" value="出售" /> 出售</label>
+							<label class="sexlabel"><radio  style="transform:scale(0.7)" value="求购" /> 求购</label>
+						</radio-group>
+					</view>
+				</view>
+			</view>
+			<view class="line-wrap"><view class="line"></view></view>
+			<view class="textareawrap">
+				<view class="top-text">描述 :</view>
+				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
+				:placeholder="placeholdertext"></textarea>
+			</view>
+		</block>
+		<!-- 二手交易 end -->
+		
 		<!-- 标签  各个发布界面的标签不同 start -->
 		<view class="tagview" v-if="publishtype=='shunfengche'">
 			<!-- 根据点进来不同的分类去找不同的标签 -->
@@ -151,8 +267,7 @@
 
 		<view class="line-wrap"><view class="line"></view></view>
 		<!-- 标签  各个发布界面的标签不同 end -->
-
-		<!-- 上传照片 start -->
+	<view class="common">		<!-- 上传照片 start -->
 		<view class="upload-text">
 			<view class="left-text">图片上传</view>
 			<view class="right-text">{{ photoarry.length }}/6</view>
@@ -212,7 +327,7 @@
 			<button class="publishbtn" >发布</button>
 		</view>
 		
-		
+		</view>
 		
 		
 		
@@ -253,7 +368,30 @@
 				:pickerValueDefault="[0]"
 				@onConfirm="confirmqwxz"
 				:pickerValueArray="qwxzarry"></mpvue-picker>				
-					
+			<!-- 装修情况 -->
+			<mpvue-picker
+				ref="zxqkmpvuePicker"
+				:mode="mode"
+				themeColor="#52A9EC"
+				:pickerValueDefault="[0]"
+				@onConfirm="confirmzxqk"
+				:pickerValueArray="zxqkarry"></mpvue-picker>
+			<!-- 生意行业 -->
+			<mpvue-picker
+				ref="syhympvuePicker"
+				:mode="mode"
+				themeColor="#52A9EC"
+				:pickerValueDefault="[0]"
+				@onConfirm="confirmsyhy"
+				:pickerValueArray="syhyarry"></mpvue-picker>
+			<!-- 车辆级别 -->
+			<mpvue-picker
+				ref="cljbmpvuePicker"
+				:mode="mode"
+				themeColor="#52A9EC"
+				:pickerValueDefault="[0]"
+				@onConfirm="confirmcljb"
+				:pickerValueArray="cljbarry"></mpvue-picker>								
 			<!-- 乘车时间  -->
 			<yu-datetime-picker ref="ccsjpicker" :current="true" color="#52A9EC" :isAll="false" @confirm="confirmccsj"></yu-datetime-picker>
 		</view>
@@ -280,7 +418,8 @@ export default {
 	data() {
 		return {
 			mode: 'selector',
-			publishtype:'zhaopin',
+			placeholdertext:"请简要说明您的物品的名称等各项情况,请不要填写手机或者QQ。",
+			publishtype:'ershoujiaoyi',
 			chengkerenshu: '1人',
 			chengcheshijian: '2019-11-02 10:10:09',
 			czrarry: [
@@ -334,8 +473,36 @@ export default {
 				{ label: '2000-4000', value: '2' },
 				{ label: '4000-6000', value: '3' },
 				{ label: '6000-10000', value: '4' },
-				{ label: '1W以上', value: '5' }],	
-				
+				{ label: '1W以上', value: '5' }],
+			/* 房屋租售 */
+			zhuangxiuqingkuang:'请选择',
+			zxqkarry:[{ label: '毛坯', value: '0' },
+				{ label: '简装', value: '1' },
+				{ label: '精装', value: '2' },
+				{ label: '豪装', value: '3' }],
+			/* 生意转让 */	
+			shengyihangye:'请选择',
+			syhyarry:[{ label: '酒店餐饮', value: '0' },
+				{ label: '娱乐休闲', value: '1' },
+				{ label: '百货零售', value: '2' },
+				{ label: '电子通讯', value: '3' },
+				{ label: '生活服务', value: '4' },
+				{ label: '汽修美容', value: '5' },
+				{ label: '医药保健', value: '6' },
+				{ label: '教育培训', value: '7' },
+				{ label: '公司工厂', value: '8' },
+				{ label: '家居建材', value: '9' },
+				{ label: '其他', value: '10' },],
+			/* 汽车交易 */
+			cheliangjibie:'请选择',
+			cljbarry:[{ label: '轿车', value: '0' },
+				{ label: 'SUV', value: '1' },
+				{ label: 'MPV', value: '2' },
+				{ label: '微面', value: '3' },
+				{ label: '皮卡', value: '4' },
+				{ label: '电动车', value: '5' },
+				{ label: '其他车型', value: '6' }],	
+			/* 二手交易 */	
 		};
 	},
 	methods: {
@@ -354,6 +521,18 @@ export default {
 		/* 打开期望薪资选择框 */
 		showqwxzPicker(){
 			this.$refs.qwxzmpvuePicker.show();
+		},
+		/* 打开装修情况选择框 */
+		showzxqkPicker(){
+			this.$refs.zxqkmpvuePicker.show();
+		},
+		/* 打开生意行业选择框 */
+		showsyhyPicker(){
+			this.$refs.syhympvuePicker.show();
+		},
+		/* 打开车辆级别选择框 */
+		showcljbPicker(){
+			this.$refs.cljbmpvuePicker.show();
 		},
 		showccsjPicker() {
 			this.$refs.ccsjpicker.show();
@@ -374,6 +553,18 @@ export default {
 		/* 确认期望薪资 */
 		confirmqwxz(e){
 			this.qiwangxinzi = e.label ;
+		},
+		/* 确认装修情况 */
+		confirmzxqk(e){
+			this.zhuangxiuqingkuang = e.label ;
+		},
+		/* 确认装修情况 */
+		confirmsyhy(e){
+			this.shengyihangye = e.label ;
+		},
+		/* 确认车辆级别 */
+		confirmcljb(e){
+			this.cheliangjibie = e.label ;
 		},	
 		onChange(e) {
 			console.log(e);
@@ -457,6 +648,9 @@ export default {
 			}
 		},
 		qiuzhisexChange(e){
+			console.log(e.detail.value);
+		},
+		eswupinChange(e){
 			console.log(e.detail.value);
 		}
 	}
