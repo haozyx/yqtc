@@ -97,7 +97,8 @@
 			listContent,
 		},
 		onLoad() {
-
+			var me = this;
+			me.gettwocategory();
 		},
 		methods: {
 			/* 打开分类选择框 */
@@ -131,6 +132,29 @@
 					url:'../tcclassify/tcclassify'
 				})
 			},
+			/* 获取分类信息 */
+			gettwocategory(){
+				var me = this;
+				
+				me.webhttp({
+					url: me.websiteUrl + 'gettwocategory',
+					method: 'GET',
+					data: {},
+				}).then(res=>{
+					console.info(res);
+				});
+				
+				/* uni.request({
+					url: me.websiteUrl + 'gettwocategory',
+					method: 'GET',
+					data: {},
+					success: res => {
+						console.info(res);
+					},
+					fail: () => {},
+					complete: () => {}
+				}); */
+			}
 		}
 	}
 </script>
