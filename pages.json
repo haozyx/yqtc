@@ -32,11 +32,15 @@
 		    "style" : {"titleNView":false}
 		}
         ,{
-            "path" : "pages/publish/chezhaoren/chezhaoren",
+            "path" : "pages/publish/addinfo/addinfo",
             "style" : {}
         }
         ,{
             "path" : "pages/clause/clause",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/publish/toppage/toppage",
             "style" : {}
         }
     ],

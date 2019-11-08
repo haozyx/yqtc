@@ -38,7 +38,8 @@
 	display: flex;
 	flex-direction: column;
 	font-size: 14px;
-	padding: 0 30upx;
+	/* padding: 0 30upx; */
+	padding: 0 20upx 0 20upx;
 	align-items: flex-start;
 }
 .top-text{
@@ -84,7 +85,7 @@
 	padding: 0 30upx;
 }
 .tagwrap{
-	margin-right: 10px;
+	margin-right: 6px;
 	margin-bottom: 10px;
 }
 
@@ -197,4 +198,18 @@
 }
 .sexlabel{
 	margin-left: 5px;
+}
+
+/* 提示信息 */
+.infomation{
+	display: flex;
+	flex-direction: column;
+	background-color: #EFEFEF;
+	padding: 20upx;
+	font-size: 14px;
+	margin-top: 2px;
+}
+.redtext{
+	color: red;
+	display: inline-block;
 }

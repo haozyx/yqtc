@@ -12,6 +12,7 @@ Vue.component('fa-icon',faicon)
 //全局访问的url
 Vue.prototype.websiteUrl = 'http://localhost:8089/ycxq/m/tc/';  
 //Vue.prototype.websiteUrl = 'https://yohaoyun.com/ycxq/m/';  
+//封装的promise方法
 Vue.prototype.webhttp = Http
 
 App.mpType = 'app'

@@ -11,7 +11,7 @@
 		<view class="classify">
 			<block v-for="(clz,index) in classifyarry" :key="index">
 				<view class="clzwraper" @tap="openclzsel(clz.id)" :data-id="clz.id">
-					<image :src="clz.img" class="clzimg"></image>
+					<image :src="clz.icon" class="clzimg"></image>
 					<view class="clztext">{{clz.name}}</view>
 				</view>
 			</block>
@@ -20,92 +20,35 @@
 		
 		<!-- 各个分类下的弹出层 start -->
 		<view>
-			<!-- 顺风车 -->
-			<uni-popup type="center" ref="shunfengchepop" :custom="true" :mask-click="true">
+			<!-- 各个分类下的弹出层分为两类 A类:只有简单几项中间界面可以放置的下
+			 B类,分类超过8项采用底部弹出的方式
+			 -->
+			<uni-popup type="center" ref="aleipop" :custom="true" :mask-click="true">
 				 <view class="itemwrap">
 					<view class="item-text">
 						请选择发布类型
 					</view>
-					 <view class="item-text" @tap="gotochezhaoren">
-					 	车找人
-					 </view>
-					 <view class="item-text">
-					 	人找车
-					 </view>
-					 <view class="item-text noboder">
-					 	天天拼
-					 </view>
+					<block v-for="(a,index) in aleiarry" :key="index">
+						<view class="item-text"  :class="{noboder:(index+1) == aleiarry.length}" @tap="gotoaddinfo(a.id)">
+							{{a.name}}
+						</view>
+					</block>
+					 
 				 </view>
 			</uni-popup>
-			<!-- 招聘求职 -->
-			<uni-popup type="center" ref="zhaopinpop" :custom="true" :mask-click="true">
-				 <view class="itemwrap">
-					<view class="item-text">
-						请选择发布类型
-					</view>
-					 <view class="item-text">
-					 	招聘
-					 </view>
-					 <view class="item-text noboder">
-					 	求职
-					 </view>
-				 </view>
-			</uni-popup>
+			 
 			<!-- 本地服务 -->
-			<uni-popup type="bottom" ref="bendifuwupop" :custom="true" :mask-click="true">
+			<uni-popup type="bottom" ref="bleipop" :custom="true" :mask-click="true">
 				 <view class="itemwrap-bottom">
 					<view class="item-text-center">
 						请选择发布类型
 					</view>
 					<view class="twoitem">
-						<view class="item-text-one">
-							家政服务
-						</view>
-						<view class="item-text-one">
-							维修服务
-						</view>
-						<view class="item-text-one">
-							装修服务
-						</view>
-						<view class="item-text-one">
-							商务服务
+						<view class="item-text-one" v-for="(b,index) in bleiarry" :key="index" @tap="gotoaddinfo(b.id)"> 
+							{{b.name}}
 						</view>
 					</view>
 					 
-				 </view>
-			</uni-popup>
-			<!-- 汽车交易 -->
-			<uni-popup type="center" ref="qichejiaoyipop" :custom="true" :mask-click="true">
-				 <view class="itemwrap">
-					<view class="item-text">
-						请选择发布类型
-					</view>
-					 <view class="item-text">
-					 	出售
-					 </view>
-					 <view class="item-text noboder">
-					 	求购
-					 </view>
-				 </view>
-			</uni-popup>
-			<!-- 房屋租售 -->
-			<uni-popup type="center" ref="fangwuzushoupop" :custom="true" :mask-click="true">
-				 <view class="itemwrap">
-					<view class="item-text">
-						请选择发布类型
-					</view>
-					 <view class="item-text">
-					 	出售
-					 </view>
-					 <view class="item-text">
-					 	出租
-					 </view>
-					 <view class="item-text">
-					 	求组
-					 </view>
-					 <view class="item-text noboder">
-					 	求购
-					 </view>
 				 </view>
 			</uni-popup>
 		</view>
@@ -130,42 +73,63 @@
 					{'id':5,'name':'生意转让','img':'../../static/img/index/shengyi.png'},
 					{'id':6,'name':'汽车交易','img':'../../static/img/index/qichejiaoyi.png'},
 					{'id':7,'name':'二手物品','img':'../../static/img/index/ershou.png'}],
+				aleiarry:[],
+				bleiarry:[],
 			}
+		},
+		onLoad() {
+			var me = this;
+			me.gettwocategory();
 		},
 		methods: {
 			openclzsel(id){
 				var me = this;
-				switch (id){
-				case 1:
-					me.$refs.shunfengchepop.open();
-					break;
-				case 2:
-					me.$refs.zhaopinpop.open();
-					break;
-				case 3:
-					me.$refs.bendifuwupop.open();
-					break;	
-				case 4:
-					me.$refs.fangwuzushoupop.open();
-					break;
-				case 5:
-					 
-					break;
-				case 6:
-					me.$refs.qichejiaoyipop.open();
-					break;
-				case 7:
-					me.$refs.ershouwupinpop.open();
-					break;									
-				default:
-					break;
-				}
-				
+				me.getthreecategroy(id);
 			},
-			gotochezhaoren(){
+			/* 根绝分类的不同显示不同的发布页面 */
+			gotoaddinfo(id){
+				//关闭分类选择--没有进行记录这里统一关闭
+				this.$refs.aleipop.close();
+				this.$refs.bleipop.close();
 				uni.navigateTo({
-					url:'/pages/publish/chezhaoren/chezhaoren'
+					url:'/pages/publish/addinfo/addinfo?id='+id
 				})
+			},
+			/* 获取分类信息 */
+			gettwocategory(){
+				var me = this;
+				
+				me.webhttp({
+					url: me.websiteUrl + 'gettwocategory',
+					method: 'GET',
+					data: {},
+				}).then(res=>{
+					if(res.code == 200 ){
+						me.classifyarry = res.list; 
+					}
+				});
+			},
+			getthreecategroy(pid){
+				var me =this;
+ 
+				me.webhttp({
+					url: me.websiteUrl + 'getthreecategory',
+					method: 'GET',
+					data: {pid:pid},
+				}).then(res=>{
+					console.log(res);
+					if(res.code == 200 ){
+						if(res.list!=""&&res.list.length>6){
+							me.bleiarry = res.list;
+							me.$refs.bleipop.open();
+						}else{
+							me.aleiarry = res.list;	
+							me.$refs.aleipop.open();
+						}
+						
+						
+					}
+				});
 			}
 		}
 	}

@@ -3,7 +3,7 @@
 		<uni-notice-bar :single="true" :show-icon="true" text="免责声明:本平台不对任何人提供任何形式担保." />
 		<view class="line-wrap"><view class="line"></view></view>
 		
-		<block v-if="publishtype == 'shunfengcheng'">
+	<block v-if="ptypename == 'shunfengche'">
 		<view class="textwrap">
 			<view class="leftwrap">
 				<view class="lefttext">出发地 :</view>
@@ -22,15 +22,16 @@
 		<view class="line-wrap"><view class="line"></view></view>
 
 		<!-- 天天拼没有乘车时间 -->
-		<view class="textwrap">
-			<view class="leftwrap"><view class="lefttext">乘车时间 :</view></view>
-			<view class="rightwrap">
-				<view class="righttext" @tap="showccsjPicker">{{ chengcheshijian }}</view>
-				<fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon>
+		<block v-if="typename!='tiantianpin'">
+			<view class="textwrap"  >
+				<view class="leftwrap"><view class="lefttext">乘车时间 :</view></view>
+				<view class="rightwrap">
+					<view class="righttext" @tap="showccsjPicker">{{ chengcheshijian }}</view>
+					<fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon>
+				</view>
 			</view>
-		</view>
-		<view class="line-wrap"><view class="line"></view></view>
-
+			<view class="line-wrap"><view class="line"></view></view>
+		</block>
 		<view class="textwrap">
 			<view class="leftwrap"><view class="lefttext">乘车人数 :</view></view>
 			<view class="rightwrap">
@@ -39,14 +40,10 @@
 			</view>
 		</view>
 		<view class="line-wrap"><view class="line"></view></view>
-
-		<view class="textareawrap">
-			<view class="top-text">内容填写 :</view>
-			<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" placeholder="请简要补充说明,例如上车时间/小区等,为保护隐私,请不要填写手机,QQ!"></textarea>
-		</view>
-		</block>
+		
+	</block>
 		<!-- 求职模块 -->
-		<block v-if="publishtype == 'qiuzhi'">
+		<block v-if="typename == 'qiuzhi'">
 			<view class="zhaopinwrap">
 				<view class="leftwrap"><view class="lefttext">期望职位 :</view></view>
 				<view class="rightwrap">
@@ -91,14 +88,10 @@
 				</view>
 			</view>
 			<view class="line-wrap"><view class="line"></view></view>
-			<view class="textareawrap">
-				<view class="top-text">自我评价 :</view>
-				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" placeholder="一句话介绍自己,让别人更了解你,为保护隐私,请不要填写手机,QQ!"></textarea>
-			</view>
 		</block>
  
 		<!-- 招聘模块 -->
-		<block v-if="publishtype == 'zhaopin'">
+		<block v-if="typename == 'zhaopin'">
 			<view class="zhaopinwrap">
 				<view class="leftwrap"><view class="lefttext">招聘职位 :</view></view>
 				<view class="rightwrap">
@@ -135,35 +128,17 @@
 				</view>
 			</view>
 			<view class="line-wrap"><view class="line"></view></view>
-			<view class="textareawrap">
-				<view class="top-text">职位描述 :</view>
-				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" placeholder="请简要说明招聘岗位,任职需求,公司介绍等,为保护隐私,请不要填写手机,QQ!"></textarea>
-			</view>
-		</block>
-		
-		<!-- 本地服务模块 start-->
-		
-		<block v-if="publishtype=='bendifuwu'">
-			<view class="textareawrap">
-				<view class="top-text">内容描述 :</view>
-				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
-				placeholder="简要介绍服务内容,为保护隐私,请不要填写手机,QQ!"></textarea>
-			</view>
-			
-			
 			
 		</block>
+		
+		<!-- 本地服务模块 -只有内容描述 start-->
+		 
 		
 		<!-- 本地服务模块 end-->
 		
 		<!-- 房屋租售模块 start -->
-		<block v-if="publishtype=='fangwuzushou'">
-			<view class="textareawrap">
-				<view class="top-text">房屋描述 :</view>
-				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
-				placeholder="简要说明房屋信息,交通情况及周边配套信息,为保护隐私,请不要填写手机,QQ!"></textarea>
-			</view>
-			<view class="line-wrap"><view class="line"></view></view>
+		<block v-if="ptypename=='fangwuzushou'">
+			 <block v-if="typename== 'chuzu' || typename == 'chushou'">
 			<view class="textwrap">
 				<view class="leftwrap">
 					<view class="lefttext">房屋位置 :</view>
@@ -180,27 +155,12 @@
 				</view>
 			</view>
 			<view class="line-wrap"><view class="line"></view></view>
-		
 		</block>
-		
-		<block v-if="publishtype=='qiuzufangwu'">
-			<view class="textareawrap">
-				<view class="top-text">需求描述 :</view>
-				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
-				placeholder="简要说明期望户型、面积、位置、租期、租金、特殊要求等,为保护隐私,请不要填写手机,QQ!"></textarea>
-			</view>
 		</block>
-		
-		<block v-if="publishtype=='qiugoufangwu'">
-			<view class="textareawrap">
-				<view class="top-text">需求描述 :</view>
-				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
-				placeholder="简要说明期望户型、面积、位置、产权、价格等,为保护隐私,请不要填写手机,QQ!"></textarea>
-			</view>
-		</block>
+		 
 		<!-- 房屋租售模块 end -->
 		<!-- 生意装让 start -->
-		<block v-if="publishtype=='shengyizhuanrang'">
+		<block v-if="ptypename=='shengyizhuanrang'">
 			<view class="textwrap">
 				<view class="leftwrap"><view class="lefttext">所属行业 :</view></view>
 				<view class="rightwrap">
@@ -209,16 +169,12 @@
 				</view>
 			</view>
 			<view class="line-wrap"><view class="line"></view></view>
-			<view class="textareawrap">
-				<view class="top-text">描述 :</view>
-				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
-				placeholder="简要说明期望户型、面积、位置、产权、价格等,为保护隐私,请不要填写手机,QQ!"></textarea>
-			</view>
+			 
 		</block>
 		
 		<!-- 生意装让 end -->
 		<!-- 汽车交易 start -->
-		<block v-if="publishtype=='qichejiaoyi'">
+		<block v-if="ptypename=='qichejiaoyi'">
 			<view class="textwrap">
 				<view class="leftwrap"><view class="lefttext">车辆级别 :</view></view>
 				<view class="rightwrap">
@@ -227,16 +183,12 @@
 				</view>
 			</view>
 			<view class="line-wrap"><view class="line"></view></view>
-			<view class="textareawrap">
-				<view class="top-text">描述 :</view>
-				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
-				placeholder="简要说明期望户型、面积、位置、产权、价格等,为保护隐私,请不要填写手机,QQ!"></textarea>
-			</view>
+			 
 		</block>
 		<!-- 汽车交易 end -->
 		
 		<!-- 二手交易 start -->
-		<block v-if="publishtype == 'ershoujiaoyi'">
+		<block v-if="ptypename == 'ershoujiaoyi'">
 			<view class="textwrap">
 				<view class="leftwrap"><view class="lefttext">发布类型 :</view>
 					<!-- 类型选择框 -->
@@ -249,25 +201,29 @@
 				</view>
 			</view>
 			<view class="line-wrap"><view class="line"></view></view>
-			<view class="textareawrap">
-				<view class="top-text">描述 :</view>
-				<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" 
-				:placeholder="placeholdertext"></textarea>
-			</view>
+		 
 		</block>
 		<!-- 二手交易 end -->
-		
-		<!-- 标签  各个发布界面的标签不同 start -->
-		<view class="tagview" v-if="publishtype=='shunfengche'">
-			<!-- 根据点进来不同的分类去找不同的标签 -->
-			<view class="tagwrap" v-for="(czr, index) in czrarry" :key="index">
-				<uni-tag :inverted="choosetagarry.indexOf(czr.name) == -1" :text="czr.name" :data-tagname="czr.name" @tap="seltag" type="primary" />
-			</view>
-		</view>
 
-		<view class="line-wrap"><view class="line"></view></view>
 		<!-- 标签  各个发布界面的标签不同 end -->
-	<view class="common">		<!-- 上传照片 start -->
+	<view class="common">		
+	
+	
+	<view class="textareawrap">
+		<view class="top-text">内容描述 :</view>
+		<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" :placeholder="placeholdertext"></textarea>
+	</view>
+	
+	<!-- 标签  各个发布界面的标签不同 start -->
+	<view class="tagview">
+		<!-- 根据点进来不同的分类去找不同的标签 -->
+		<view class="tagwrap" v-for="(tag, index) in tagarry" :key="index">
+			<uni-tag :inverted="choosetagarry.indexOf(tag) == -1" :text="tag" :data-tagname="tag" @tap="seltag" type="primary" />
+		</view>
+	</view>
+	
+	<view class="line-wrap"><view class="line"></view></view>
+	<!-- 上传照片 start -->
 		<view class="upload-text">
 			<view class="left-text">图片上传</view>
 			<view class="right-text">{{ photoarry.length }}/6</view>
@@ -322,9 +278,17 @@
 		</view>
 		<view class="line-wrap"><view class="line"></view></view>
 		
+		<!-- 一些提示 例如收费提示 发布提示 -->
+		
+		<view class="infomation" v-if="isfree==0">
+			<view class="hinttext">
+				本模块发布信息收费,发布<view class="redtext"> 1条=1元.</view>
+			</view>
+		</view>
+		
 		<!-- 发布按钮 -->
 		<view>
-			<button class="publishbtn" >发布</button>
+			<button class="publishbtn"  @tap="gototoppage">发布</button>
 		</view>
 		
 		</view>
@@ -418,8 +382,11 @@ export default {
 	data() {
 		return {
 			mode: 'selector',
+			tagarry:[],
+			isfree:1,
 			placeholdertext:"请简要说明您的物品的名称等各项情况,请不要填写手机或者QQ。",
-			publishtype:'ershoujiaoyi',
+			ptypename:'',/* 父类别 */
+			typename:'', /* 当前的类别*/
 			chengkerenshu: '1人',
 			chengcheshijian: '2019-11-02 10:10:09',
 			czrarry: [
@@ -504,6 +471,12 @@ export default {
 				{ label: '其他车型', value: '6' }],	
 			/* 二手交易 */	
 		};
+	},
+	onLoad(e) {
+		var me = this;
+		var cid = e.id;
+		me.getcurrenttypeinfo(cid);
+		
 	},
 	methods: {
 		/* 打开乘车人数选择框 */
@@ -652,11 +625,39 @@ export default {
 		},
 		eswupinChange(e){
 			console.log(e.detail.value);
-		}
+		},
+		/* 获取当前的分类信息 */
+		getcurrenttypeinfo(id){
+			var me= this;
+			me.webhttp({
+				url:me.websiteUrl + 'getthreecategoryinfo',
+				method:'GET',
+				data:{id:id}
+			}).then(res=>{
+				console.log(res);
+				if(res.code == 200){
+					me.ptypename = res.cinfo.ptypename;
+					me.typename = res.cinfo.typename;
+					me.tagarry = res.cinfo.categorytag.split("#");
+					me.placeholdertext = res.cinfo.placetext;
+					me.isfree = res.cinfo.isfree;
+					uni.setNavigationBarTitle({
+						title: res.cinfo.pname+"-发布"+res.cinfo.name
+					});
+				}
+				
+			});
+		},
+		/* 保存并前往信息置顶页面 */
+		gototoppage(){
+			uni.redirectTo({
+				url:'/pages/publish/toppage/toppage'
+			})
+		},
 	}
 };
 </script>
 
 <style>
-@import url('chezhaoren.css');
+@import url('addinfo.css');
 </style>

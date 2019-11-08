@@ -17,7 +17,7 @@
 		 <view class="classify">
 			 <block v-for="(clz,index) in classifyarry" :key="index">
 				 <view class="clzwraper" @tap="gotoclassify" :data-id="clz.id">
-					<image :src="clz.img" class="clzimg"></image>
+					<image :src="clz.icon" class="clzimg"></image>
 					<view class="clztext">{{clz.name}}</view>
 				 </view>
 			  </block>
@@ -142,6 +142,9 @@
 					data: {},
 				}).then(res=>{
 					console.info(res);
+					if(res.code == 200 ){
+						me.classifyarry = res.list;
+					}
 				});
 				
 				/* uni.request({

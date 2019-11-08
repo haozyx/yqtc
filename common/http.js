@@ -1,10 +1,13 @@
 const webhttp = (options) =>{
 	
 	return new Promise((resolve,reject)=>{
-		uni.showLoading({
-			mask:true,
-			title:"加载中..."
-		});
+		if(options.showloading){
+			uni.showLoading({
+				mask:true,
+				title:"加载中..."
+			});
+		}
+		
 		uni.request({
 			url: options.url,
 			method: options.method,
@@ -13,10 +16,14 @@ const webhttp = (options) =>{
 				resolve(res.data);
 			},
 			fail: (e) => {
+				console.log(e);
 				reject(e);
 			},
 			complete: () => {
-				uni.hideLoading();
+				if(options.showloading){
+					uni.hideLoading();
+				}
+				
 			}
 		});
 	});
