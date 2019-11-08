@@ -1,0 +1,41 @@
+/* 表单项 start */
+.info-wapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	border-bottom: solid 1px #DBDBDA;
+	padding:20upx;
+	 
+}
+
+.words-lbl {
+	color: #808080;
+	width: 120upx;
+	flex-shrink: 0;
+	font-size: 14px;
+	text-align: right;
+}
+
+.input {
+	width: 500upx;
+	margin-left: 40upx;
+}
+
+.graywords {
+	color: #EAEAEA;
+}
+
+.regbutton{
+	background-color:#DC143C;
+	border-radius: 20px;
+	color: #FFFFFF;
+	padding: 20upx;
+	text-align: center;
+	width: 90%;
+	margin-top: 60upx;
+}
+.sexrap{
+	width: 500upx;
+	font-size: 14px;
+}
+/* 表单项 end */

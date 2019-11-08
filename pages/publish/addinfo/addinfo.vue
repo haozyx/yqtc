@@ -107,13 +107,13 @@
 			<view class="line-wrap"><view class="line"></view></view>
 			
 			<view class="textwrap">
-				<view class="leftwrap"><view class="lefttext">性别 :</view>
+				<view class="leftwrap" style="align-self: flex-start;"><view class="lefttext">性别 :</view>
 					<!-- 性别选择框 -->
 					<view class="sexrap">
 						<radio-group  @change="qiuzhisexChange">
-							<label class="sexlabel"><radio  style="transform:scale(0.7)" value="不限" /> 不限</label>
 							<label class="sexlabel"><radio style="transform:scale(0.7)" value="男" /> 男</label>
 							<label class="sexlabel"><radio  style="transform:scale(0.7)" value="女" /> 女</label>
+							<label class="sexlabel"><radio  style="transform:scale(0.7)" value="不限" /> 不限</label>
 						</radio-group>
 					</view>
 				</view>

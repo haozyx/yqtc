@@ -43,6 +43,10 @@
             "path" : "pages/publish/toppage/toppage",
             "style" : {}
         }
+        ,{
+            "path" : "pages/me/updateme/updateme",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
