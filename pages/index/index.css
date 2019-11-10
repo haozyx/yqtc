@@ -92,8 +92,11 @@
 }
 /* 首页导航 end */
 
-
-
+/* 最下方的空白 */
+.whitespace{
+	height: 50px;
+	width: 100%;
+}	
 
 
 

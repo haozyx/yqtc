@@ -1,0 +1,44 @@
+/* 分割线 */
+.grayspace{
+	height: 10px; 
+	width: 100%;
+	background: #E3E3E3;
+}
+.info-wapper{
+	padding: 40upx;
+}
+.info-title{
+	color:#FF6737;
+	font-size: 14px;
+}
+.info-body{
+	margin-top: 10px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.tagwrap{
+	margin-right: 5px;
+	margin-bottom: 10px;
+}
+.notetext{
+	border: 1px solid #F1F1F1;
+	height: 200upx;
+	width: 700upx;
+	padding: 20upx;
+	background: #F0F5F8;
+}
+
+
+
+
+
+
+
+.reportbtn{
+	width: 60%;
+	color: #FFFFFF;
+	background: #007AFF;
+	margin-top: 20px;
+}

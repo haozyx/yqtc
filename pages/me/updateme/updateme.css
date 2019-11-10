@@ -2,12 +2,29 @@
 .info-wapper {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: flex-start;
 	border-bottom: solid 1px #DBDBDA;
-	padding:20upx;
-	 
+	padding: 0 20upx;
+	height: 120upx;
+	align-items: center; 
 }
 
+.info-wapper-tx {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	border-bottom: solid 1px #DBDBDA;
+	padding: 0 20upx;
+	height: 150upx;
+	align-items: center; 
+}
+/* 空白行 */
+.grayspace{
+	height: 20px;
+	width:100%;
+	background-color: #EFEFEF;
+	border-bottom: solid 1px #DBDBDA;
+}
 .words-lbl {
 	color: #808080;
 	width: 120upx;
@@ -18,7 +35,8 @@
 
 .input {
 	width: 500upx;
-	margin-left: 40upx;
+	margin-left: 30upx;
+	height: 25px;
 }
 
 .graywords {
@@ -37,5 +55,28 @@
 .sexrap{
 	width: 500upx;
 	font-size: 14px;
+	margin-left: 30upx;
+}
+
+.usertx{
+	width: 60px;
+	height: 60px;
+	margin-left: 20upx;
+}
+.uploadimg{
+	width: 30px;
+	height: 30px;
+	padding: 20upx;
+	margin-left: 20px;
+	border: 1px solid #F1F1F1;
 }
 /* 表单项 end */
+
+/* 按钮 start */
+.updatebtn{
+	width: 60%;
+	background-color: #007AFF;
+	color : #FFFFFF;
+	margin-top: 20px;
+}
+/* 按钮 end */

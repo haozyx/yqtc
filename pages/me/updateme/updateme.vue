@@ -1,6 +1,15 @@
 <template>
 	<view>
 		
+		<view class="info-wapper-tx">
+			<label class="words-lbl">我的头像</label>
+			
+			<image class="usertx" src="../../../static/img/me/touxiang.png"></image>
+			
+			<image class="uploadimg" src="../../../static/img/me/upload.png" @tap="openchoose"></image>
+			
+		</view>
+		<view class="grayspace"></view>
 		<view class="info-wapper">
 			<label class="words-lbl">设置昵称</label>
 			<input name="username" type="text"   class="input" placeholder="请输入用户名" placeholder-class="graywords" />
@@ -31,6 +40,10 @@
 				</radio-group>
 			</view>
 		</view>
+		
+		<view>
+			<button class="updatebtn">确认修改</button>
+		</view>
 	</view>
 </template>
 
@@ -44,7 +57,21 @@
 		methods: {
 			sexChange(e){
 				console.log(e);
-			}
+			},
+			openchoose(){
+				uni.chooseImage({
+				    count: 1,
+				    /* sizeType: ['original', 'compressed'], */
+					sizeType: ['compressed'],
+				    sourceType: ['album'],
+				    success: function(res) {
+				       console.info(res.tempFiles[0]);
+						var size = parseInt(res.tempFiles[0].size)/1024;
+						var sizekb = size.toFixed(2);
+						console.log(sizekb);
+				    }
+				    });
+			},
 		}
 	}
 </script>

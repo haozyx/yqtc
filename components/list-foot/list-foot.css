@@ -3,10 +3,11 @@
 	margin-top: 5px;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-start;
 	font-size: 14px;
 	padding-right: 10upx;
 	position: relative;
+	align-items: center;
 }
 .shangsanjiao{
 	border-bottom: 8px solid #F5F5F5;
@@ -20,7 +21,7 @@
 	display: flex;
 	flex-direction: row;
 	padding:5px;
-	background-color: #F5F5F5;
+	/* background-color: #F5F5F5; */
 	align-items: center;
 }
 .viewleftimg{
@@ -28,15 +29,15 @@
 	height: 13px;
 }
 .view-count{
-	font-size: 12px;
-	color: #758096;
+	font-size: 14px;
+	/* color: #758096; */
 	margin-left: 10px;
 }
  .donghuawrap{
 	 background-color:#4C5154; 
 	 display: flex;
 	 flex-direction: row;
-	 width: 90%;
+	 z-index: 100;
 	 border-radius: 10px;
 	 padding: 10upx 0;
 	 /* 动画效果*/
@@ -92,4 +93,52 @@
 	padding-bottom: 10upx;
 	padding-left: 5px;
  }
-	 
+
+
+/* 留言的弹出层 */
+.auditwraper{
+	display: flex;
+	flex-direction: column;
+	padding: 10upx;
+	border: #E3E3E3 solid 1px;
+	border-radius: 10px;
+	background: #FFFFFF;
+}
+.head-title{
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	text-align: center;
+	margin-top: 5px;
+}
+.text-input{
+	width: 490upx; 
+	height: 180upx;
+}
+.textareawrap1{
+	padding: 20upx;
+	width: 500upx;
+/* 	border-top: #F1F1F1 solid 1px; */
+}
+
+.audit-bottom{
+	display: flex;
+	flex-direction: row;
+}
+.audit-text{
+	flex: 1;
+	line-height: 80upx;
+	height: 80upx;
+	font-size: 14px;
+	text-align: center;
+
+}
+.no{
+	border-right:#F1F1F1 solid 1px;
+	border-top:#F1F1F1 solid 1px;
+	color: #000000;
+}
+.ok{
+	border-top:#F1F1F1 solid 1px;
+}
+ 	 

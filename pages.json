@@ -47,6 +47,14 @@
             "path" : "pages/me/updateme/updateme",
             "style" : {}
         }
+        ,{
+            "path" : "pages/me/minetcinfo/minetcinfo",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/report/report",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

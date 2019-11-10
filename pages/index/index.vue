@@ -36,28 +36,41 @@
 				 <image class="daosanjiao" src="../../static/img/index/daosj.png"></image>
 			 </view>
 		 </view>
-		 <view >
-			 <!-- 分类的-->
-			 <mpvue-picker ref="mpvuePicker"
-			 :mode="mode" 
-			 :pickerValueDefault="[0]" 
-			 @onChange="onChange" 
-			 @onConfirm="onConfirm" 
-			 @onCancel="onCancel" 
-			 :pickerValueArray="fenleiarry"></mpvue-picker>
-			 <mpvue-picker ref="paixuPicker"
-			 :mode="mode" 
-			 :pickerValueDefault="[0]" 
-			 @onConfirm="onConfirmpaixu" 
-			 :pickerValueArray="paixuarry"></mpvue-picker>
-		 </view>
-		<!-- 分类的导航栏 end-->
+
 		 <!-- 轮播广告位  目前不加-->
 		 
 		 <!-- 列表详情 start-->
 		 <list-content @disdetail="gotodetail" :disall="true"></list-content>
 		 <list-content @disdetail="gotodetail" :disallimg="true"></list-content>
 		 <!-- 列表详情 end-->
+		 
+		 <!-- 防止顶到最下方start -->
+		 <view class="whitespace"></view>
+		 <!-- 防止顶到最下方end -->
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 <view >
+		 	 <!-- 分类的-->
+		 	 <mpvue-picker ref="mpvuePicker"
+		 	 :mode="mode" 
+		 	 :pickerValueDefault="[0]" 
+		 	 @onChange="onChange" 
+		 	 @onConfirm="onConfirm" 
+		 	 @onCancel="onCancel" 
+		 	 :pickerValueArray="fenleiarry"></mpvue-picker>
+		 	 <mpvue-picker ref="paixuPicker"
+		 	 :mode="mode" 
+		 	 :pickerValueDefault="[0]" 
+		 	 @onConfirm="onConfirmpaixu" 
+		 	 :pickerValueArray="paixuarry"></mpvue-picker>
+		  </view>
+		 <!-- 分类的导航栏 end-->
 	</view>
 </template>
 

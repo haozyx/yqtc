@@ -6,10 +6,11 @@
 			<view class="contentwrap" >
 				<!-- title 左右结构-->
 				<view class="titlewrap">
+					<view class="title-zd">置顶</view>
 					<view class="title-fl">招聘</view>
-					<view class="title-nicheng">樱桃小丸子</view>
+					<view class="title-nicheng">樱桃小丸子樱桃小丸子樱桃小丸子樱桃小丸子</view>
 					<view class="rightsee" @tap="gotodetail">
-						<image src="../../static/img/index/eye.png" class="eyeimg"></image>
+						<image src="https://img.yohaoyun.com/yohaoyun/static/tc/eye.png" class="eyeimg"></image>
 						<view class="seetext" >详情</view>
 					</view>
 				</view>
@@ -17,6 +18,22 @@
 				<!-- 内容  start-->
 				
 				<view :class="{ contentbody: true, active: showall }">
+					<view class="tagtag">
+						<!-- primary、success、warning、danger、royal -->
+						<uni-tag inverted="true" type="primary" text="你好"></uni-tag>
+					</view>
+					<view class="tagtag">
+						<!-- primary、success、warning、danger、royal -->
+						<uni-tag inverted="true" type="error" text="你好"></uni-tag>
+					</view>
+					<view class="tagtag">
+						<!-- primary、success、warning、danger、royal -->
+						<uni-tag inverted="true" type="warning" text="你好"></uni-tag>
+					</view>
+					<view class="tagtag">
+						<!-- primary、success、warning、danger、royal -->
+						<uni-tag inverted="true" type="success" text="你好"></uni-tag>
+					</view>
 					<view class="">黄河路附近有单间出租.黄河路附近有单间出租.黄河路附近有单间出租.黄河路附近有单间出租.</view>
 					<!-- 招聘求职 start -->
 					<block v-if="ctype == 'zhaopin'">
@@ -187,10 +204,13 @@
 
 <script>
 import listFoot from '../list-foot/list-foot.vue';
+//标签
+import uniTag from '@/components/uni-tag/uni-tag.vue';
 export default {
 	name: 'list-content',
 	components:{
 		listFoot,
+		uniTag,
 	},
 	props: {
 		ctype: {
@@ -221,6 +241,7 @@ export default {
 		return {
 			showall:false,
 			showallimg:false,
+			tagarry:['success','error','warning','primary']
 		};
 	},
 	methods:{
@@ -232,7 +253,8 @@ export default {
 			uni.navigateTo({
 				url:'../../pages/perinfos/perinfos'
 			})
-		}
+		},
+		 
 	}
 };
 </script>

@@ -2,3 +2,6 @@
 
 使用的级联组件
 https://github.com/MPComponent/mpvue-picker
+
+右箭头
+fa-angle-right

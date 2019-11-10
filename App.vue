@@ -32,6 +32,9 @@
 		height: 1px;
 		background-color: #e3e3e3;
 	}
+	.globalblue{
+		color:#52A9EC;
+	}
 	/* 这是隐藏滚动条的，在单个页面设置不管用 */
 	::-webkit-scrollbar {
 		display: none;

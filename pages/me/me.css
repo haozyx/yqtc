@@ -1,0 +1,107 @@
+.page-fill {
+	width:100%;
+	height: 100%;
+}
+
+/* 头部个人信息 start */
+.header {
+	padding: 120upx 30upx 40upx 30upx;
+	background-color: #52A9EC;
+ 
+	
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+.face {
+	width: 120upx;
+	height: 120upx;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.info-wapper {
+	width: 80%;
+	margin-left: 40upx;
+	display: flex;
+	flex-direction: column;
+}
+.nickname {
+	color: #FFFFFF;
+	font-size: 18px;
+	font-weight: bold;
+}
+.regist-login {
+	margin-left: 60upx;
+	margin-top: 30upx;
+}
+
+
+.nav-info {
+	color: #FFFFFF;
+	font-size: 18px;
+	margin-top: 10upx;
+}
+
+.set-wapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	width: 15%;
+}
+.settings {
+	width: 40upx;
+	height: 40upx;
+}
+/* 头部个人信息 end */
+ 
+ 
+ /* body中项目 开始 */
+ >>> .line-wrap{
+	 /* 覆盖一下全局的样式*/
+	 padding: 0;
+ }
+ 
+ .body{
+	 background-color: #FFFFFF;
+ }
+ .textwrap{
+ 	display: flex;
+ 	flex-direction: row;
+ 	justify-content: space-between;
+ 	font-size: 14px;
+ 	height: 60px;
+ 	padding: 0 30upx;
+ 	align-items: center;
+ }
+ 
+ .leftwrap{
+ 	display: flex;
+ 	flex-direction: row;
+ }
+ .leftimg{
+ 	width: 25px;
+ 	height: 25px;
+ }
+ .lefttext{
+ 	margin-left: 10px;
+ 	height: 25px;
+ 	line-height: 25px;
+ }
+ .rightwrap{
+ 	display: flex;
+ 	flex-direction: row;
+ }
+ .righttext{
+ 	height: 30px;
+ 	line-height: 30px;
+ }
+ 
+ 
+ .you{
+ 	width: 30px;
+ 	height: 30px;
+ }
+ 
+ /* body中项目 结束 */
