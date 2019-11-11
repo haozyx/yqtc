@@ -7,7 +7,7 @@
 		<view class="textwrap">
 			<view class="leftwrap">
 				<view class="lefttext">出发地 :</view>
-				<input class="input" placeholder="请输入出发地" />
+				<input class="input" v-model="chufadi" placeholder="请输入出发地" />
 			</view>
 			<view class="rightwrap"><fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon></view>
 		</view>
@@ -15,7 +15,7 @@
 		<view class="textwrap">
 			<view class="leftwrap">
 				<view class="lefttext">目的地 :</view>
-				<input class="input" placeholder="请输入目的地" />
+				<input class="input" v-model="mudidi" placeholder="请输入目的地" />
 			</view>
 			<view class="rightwrap"><fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon></view>
 		</view>
@@ -105,9 +105,8 @@
 				</view>
 			</view>
 			<view class="line-wrap"><view class="line"></view></view>
-			
 			<view class="textwrap">
-				<view class="leftwrap" style="align-self: flex-start;"><view class="lefttext">性别 :</view>
+				<view class="leftwrap"><view class="lefttext">性别 :</view>
 					<!-- 性别选择框 -->
 					<view class="sexrap">
 						<radio-group  @change="qiuzhisexChange">
@@ -119,6 +118,7 @@
 				</view>
 				 
 			</view>
+			
 			<view class="line-wrap"><view class="line"></view></view>
 			<view class="textwrap">
 				<view class="leftwrap"><view class="lefttext">职位薪资 :</view></view>
@@ -211,7 +211,7 @@
 	
 	<view class="textareawrap">
 		<view class="top-text">内容描述 :</view>
-		<textarea maxlength="500" class="textarea" placeholder-class="hintcolor" :placeholder="placeholdertext"></textarea>
+		<textarea maxlength="500" v-model="msgcontent" class="textarea" placeholder-class="hintcolor" :placeholder="placeholdertext"></textarea>
 	</view>
 	
 	<!-- 标签  各个发布界面的标签不同 start -->
@@ -233,7 +233,17 @@
 				<image :src="photo" class="photo-single" @tap="preview" :data-index="index"></image>
 				<image src="https://img.yohaoyun.com/yohaoyun/commphoto/phptox.png" @tap="subone" :data-index="index" class="photo-x"></image>
 			</view>
-			<view class="photo-single jia" v-if="saturation"><image src="https://img.yohaoyun.com/yohaoyun/commphoto/jia.png" @tap="chooseImage" class="jiaimg"></image></view>
+			<view class="photo-single jia" v-if="saturation">
+				<avatar selWidth="740upx"
+					selHeight="740upx" 
+					@upload="myUpload" 
+					:avatarSrc="myimgurl" 
+					stretch="x"
+					quality="1"
+					inner="true"
+					avatarStyle="width: 200upx; height: 200upx; border-radius: 0;">
+					</avatar>  
+				 </view>
 		</view>
 		<view class="line-wrap"><view class="line"></view></view>
 		<!-- 上传照片 end -->
@@ -241,7 +251,7 @@
 		<view class="textwrap">
 			<view class="leftwrap">
 				<view class="lefttext">联系人 :</view>
-				<input class="input" placeholder="请输入联系人" />
+				<input class="input" v-model="contactperson" placeholder="请输入联系人" />
 			</view>
 			<view class="rightwrap"><fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon></view>
 		</view>
@@ -250,20 +260,20 @@
 		<view class="textwrap">
 			<view class="leftwrap">
 				<view class="lefttext">电话 :</view>
-				<input class="input" placeholder="请输入联系电话" />
+				<input class="input" v-model="contactphone" placeholder="请输入联系电话" />
 			</view>
 			<view class="rightwrap"><fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon></view>
 		</view>
 		<view class="line-wrap"><view class="line"></view></view>
 
-		<view class="textwrap">
+	<!-- 	<view class="textwrap">
 			<view class="leftwrap">
 				<view class="lefttext">信息置顶 :</view>
 				<input class="input" v-model="zhiding" placeholder="选择后信息将显示到最顶部"  @tap="showxxzdPicker()"/>
 			</view>
 			<view class="rightwrap"><fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon></view>
 		</view>
-		<view class="line-wrap"><view class="line"></view></view>
+		<view class="line-wrap"><view class="line"></view></view> -->
 
 		<view class="textwrap">
 			<view class="leftwrap">
@@ -370,6 +380,8 @@ import mpvuePicker from 'mpvue-picker';
 import yuDatetimePicker from '@/components/yu-datetime-picker/yu-datetime-picker.vue';
 //标签
 import uniTag from '@/components/uni-tag/uni-tag.vue';
+//图像裁剪上传
+import avatar from '@/components/yq-avatar/yq-avatar.vue';
 
 export default {
 	components: {
@@ -377,18 +389,20 @@ export default {
 		uniPopup,
 		mpvuePicker,
 		yuDatetimePicker,
-		uniTag
+		uniTag,
+		avatar,
 	},
 	data() {
+		const ccsj = this.formatdate();
 		return {
 			mode: 'selector',
 			tagarry:[],
+			myimgurl:'https://img.yohaoyun.com/yohaoyun/commphoto/jia.png',
 			isfree:1,
 			placeholdertext:"请简要说明您的物品的名称等各项情况,请不要填写手机或者QQ。",
 			ptypename:'',/* 父类别 */
 			typename:'', /* 当前的类别*/
-			chengkerenshu: '1人',
-			chengcheshijian: '2019-11-02 10:10:09',
+			categoryinfo:{},
 			czrarry: [
 				{ id: 1, name: '按时发车' },
 				{ id: 2, name: '有偿发车' },
@@ -469,14 +483,26 @@ export default {
 				{ label: '皮卡', value: '4' },
 				{ label: '电动车', value: '5' },
 				{ label: '其他车型', value: '6' }],	
-			/* 二手交易 */	
+			/* 二手交易 */
+			categoryid:'',
+			guid:'',
+			/* 顺风车 */
+			chufadi:'',
+			mudidi:'',
+			chengkerenshu: '1人',
+			chengcheshijian:ccsj,
+			msgcontent:'',
+			contactphone:'', // 联系电话
+			contactperson:'', // 联系人
+				
 		};
 	},
 	onLoad(e) {
 		var me = this;
-		var cid = e.id;
+		var cid = e.categoryid;
+		me.categoryid = cid;
 		me.getcurrenttypeinfo(cid);
-		
+		me.getguid();
 	},
 	methods: {
 		/* 打开乘车人数选择框 */
@@ -545,6 +571,58 @@ export default {
 		onCancel(e) {
 			console.log(e);
 		},
+		/* 图片上传 */
+		myUpload(rsp) {
+			// console.log(rsp);
+			var me = this;
+			me.photoarry = me.photoarry.concat(rsp.path);
+			if (me.photoarry.length == 6) {
+				me.saturation = false;
+			}
+			//rsp.avatar.imgSrc = rsp.path; //更新头像方式二
+			me.uploadimg(rsp.path);
+		},
+		uploadimg(imgpath) {
+			var me = this;
+			uni.showLoading({
+				title: '正在上传...'
+			});
+			// 开始上传
+			uni.uploadFile({
+				url: me.websiteUrl + 'upload',
+				filePath: imgpath,
+				name: 'file',
+				/* formData: {
+					type: 'xiangce'
+				}, */
+				success: res => {
+					var rjson = JSON.parse(res.data);
+					//	console.log(rjson.data);
+					var uimgurl = rjson.data;
+					
+					var userimg = {
+						guid:me.guid,
+						imgurl: uimgurl
+					};
+				 
+					uni.request({
+						url: me.websiteUrl + 'savetcimg',
+						data: userimg,
+						method: 'POST',
+						success: res => {
+							if(res.data.code!=200){
+								uni.showToast({
+									title:res.data.msg,
+									icon:'none'
+								});
+							}
+						}
+					});
+				}, complete: ()=> {
+					uni.hideLoading();
+				}
+			});
+		},
 		/* 打开分类选择框  end*/
 		seltag(e) {
 			var me = this;
@@ -555,24 +633,7 @@ export default {
 				me.choosetagarry.push(tagname);
 			}
 		},
-		/* 上传照片 */
-		chooseImage() {
-			var me = this;
-			uni.chooseImage({
-				count: 1, //默认9
-				sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-				sourceType: ['camera', 'album'], //从相册选择
-				success: function(res) {
-					//JSON.stringify(res.tempFilePaths)
-					me.photoarry = me.photoarry.concat(res.tempFilePaths);
-					if (me.photoarry.length == 6) {
-						me.saturation = false;
-					}
-
-					//console.log(JSON.stringify(res.tempFilePaths));
-				}
-			});
-		},
+		 
 		subone(e) {
 			var me = this;
 			var index = e.currentTarget.dataset.index;
@@ -636,6 +697,7 @@ export default {
 			}).then(res=>{
 				console.log(res);
 				if(res.code == 200){
+					me.categoryinfo = res.cinfo;
 					me.ptypename = res.cinfo.ptypename;
 					me.typename = res.cinfo.typename;
 					me.tagarry = res.cinfo.categorytag.split("#");
@@ -648,11 +710,82 @@ export default {
 				
 			});
 		},
+		formatdate(){
+			var today = new Date();
+			var month = today.getMonth() + 1;
+			
+			month = month < 10 ? '0'+month : month;
+			var day = today.getDate() < 10 ? '0'+today.getDate() : today.getDate();
+			var hours = today.getHours() < 10 ? '0'+today.getHours() : today.getHours();
+			var mins = today.getMinutes() < 10 ? '0'+today.getMinutes() : today.getMinutes();
+			var secs = today.getSeconds() < 10 ? '0'+today.getSeconds() : today.getSeconds();
+			var now = today.getFullYear() + '-' + month + '-' + day + " " + hours + ":" + mins + ":" + secs ;
+			
+			return now;
+		},
+		getguid(){
+			var me = this;
+			me.webhttp({
+				url:me.websiteUrl + "getGuid",
+				method:'GET',
+				data:{}
+			}).then(res=>{
+				if(res.code==200){
+					me.guid = res.guid;
+				}
+			});
+		},
+		valid(){
+			var me = this;
+			
+			if(me.guid == '' || me.categoryid == ''){
+				return '服务端获取GUID错误';
+			}
+			console.info(me.ptypename);
+			console.info(me.typename);
+			if(me.ptypename == 'shunfengche'){
+				if(me.chufadi==""||me.chufadi.length==0){
+					return "出发地不能为空!";
+				}
+				if(me.mudidi==""||me.mudidi.length==0){
+					return "出发地不能为空!";
+				}
+			}
+			if(me.msgcontent==""||me.msgcontent.length==0){
+				return "请简要描述发布的内容!";
+			}
+			
+			
+		},
 		/* 保存并前往信息置顶页面 */
 		gototoppage(){
-			uni.redirectTo({
+			
+			var me = this;
+			
+			var vinfo = me.valid();
+			console.log(vinfo);
+			if(vinfo.length>0){
+				uni.showToast({
+					icon:'none',
+					title:vinfo,
+					mask:true
+				});
+				return ;
+			}
+			
+			var tcinfo={};
+			tcinfo.msgptypeid = me.categoryinfo.pid;
+			tcinfo.msgptypename = me.categoryinfo.pname;
+			tcinfo.msgtypeid = me.categoryinfo.id;
+			tcinfo.msgtypename = me.categoryinfo.name;
+			tcinfo.msgcontent = me.msgcontent;
+			if(me.choosetagarry.length>0) tcinfo.msgtags = me.choosetagarry.join(";"); //分类标签
+			tcinfo.contactperson = me.contactperson;
+			tcinfo.contackphone = me.contackphone;
+			
+			/* uni.redirectTo({
 				url:'/pages/publish/toppage/toppage'
-			})
+			}); */
 		},
 	}
 };

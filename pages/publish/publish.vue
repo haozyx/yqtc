@@ -92,7 +92,7 @@
 				this.$refs.aleipop.close();
 				this.$refs.bleipop.close();
 				uni.navigateTo({
-					url:'/pages/publish/addinfo/addinfo?id='+id
+					url:'/pages/publish/addinfo/addinfo?categoryid='+id
 				})
 			},
 			/* 获取分类信息 */
