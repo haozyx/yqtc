@@ -98,7 +98,11 @@
 	width: 100%;
 }	
 
-
+>>> .uni-tag{
+	padding: 12px 6px;
+	height: 20px;
+	line-height: 20;
+}
 
 
 
