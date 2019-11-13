@@ -174,13 +174,15 @@
 }
 
 .publishbtn{
-	position: fixed;
+/* 	position: fixed;
 	bottom: 5px;
-	width:50%;
+	left: 0;
+	right: 0; */
+	width:65%;
+	margin: 10upx auto;
 	background-color: #007AFF;
 	color: #FFFFFF;
-	left: 0;
-	right: 0;
+
 }	
 /* 发布须知 */
 

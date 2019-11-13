@@ -35,7 +35,7 @@
 		<view class="textwrap">
 			<view class="leftwrap"><view class="lefttext">乘车人数 :</view></view>
 			<view class="rightwrap">
-				<view class="righttext" @tap="showccPicker">{{ chengkerenshu }}</view>
+				<view class="righttext" @tap="showccPicker">{{ chengcherenshu }}</view>
 				<fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon>
 			</view>
 		</view>
@@ -142,7 +142,7 @@
 			<view class="textwrap">
 				<view class="leftwrap">
 					<view class="lefttext">房屋位置 :</view>
-					<input class="input" placeholder="请输入小区名称或者房屋位置" />
+					<input class="input" v-model="fangwuweizhi" placeholder="请输入小区名称或者房屋位置" />
 				</view>
 				<view class="rightwrap"><fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon></view>
 			</view>
@@ -206,12 +206,12 @@
 		<!-- 二手交易 end -->
 
 		<!-- 标签  各个发布界面的标签不同 end -->
-	<view class="common">		
+<view class="common">		
 	
 	
 	<view class="textareawrap">
 		<view class="top-text">内容描述 :</view>
-		<textarea maxlength="500" v-model="msgcontent" class="textarea" placeholder-class="hintcolor" :placeholder="placeholdertext"></textarea>
+		<textarea maxlength="1000" v-model="msgcontent" class="textarea" placeholder-class="hintcolor" :placeholder="placeholdertext"></textarea>
 	</view>
 	
 	<!-- 标签  各个发布界面的标签不同 start -->
@@ -260,7 +260,7 @@
 		<view class="textwrap">
 			<view class="leftwrap">
 				<view class="lefttext">电话 :</view>
-				<input class="input" v-model="contactphone" placeholder="请输入联系电话" />
+				<input class="input" type="number" v-model="contactphone" placeholder="请输入联系电话" />
 			</view>
 			<view class="rightwrap"><fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon></view>
 		</view>
@@ -295,13 +295,13 @@
 				本模块发布信息收费,发布<view class="redtext"> 1条=1元.</view>
 			</view>
 		</view>
-		
+ 
 		<!-- 发布按钮 -->
 		<view>
 			<button class="publishbtn"  @tap="gototoppage">发布</button>
 		</view>
 		
-		</view>
+</view>
 		
 		
 		
@@ -314,9 +314,7 @@
 				:mode="mode"
 				themeColor="#52A9EC"
 				:pickerValueDefault="[0]"
-				@onChange="onChange"
-				@onConfirm="onConfirm"
-				@onCancel="onCancel"
+				@onConfirm="confirmccrs"
 				:pickerValueArray="ccrsarry"></mpvue-picker>
 			<!-- 信息置顶 -->
 			<mpvue-picker
@@ -441,14 +439,14 @@ export default {
 			'迎宾/礼仪','经理/主管','助理','财务','设计师','教师','医生/护士','普工/技工','学徒','厨师','理发师/技师',
 			'保安','保洁','快递员','其他'],
 			choosezhiweiarry:[],
-			gongzuojingyan:'请选择',
+			
 			gzjyarry:[{ label: '应届生', value: '0' },
 				{ label: '1年以下', value: '1' },
 				{ label: '1-3年', value: '2' },
 				{ label: '3-5年', value: '3' },
 				{ label: '5-10年', value: '4' },
 				{ label: '10年以上', value: '5' }],
-			qiwangxinzi:'请选择',
+		
 			qwxzarry:[{ label: '工资面议', value: '0' },
 				{ label: '2000以下', value: '1' },
 				{ label: '2000-4000', value: '2' },
@@ -456,7 +454,6 @@ export default {
 				{ label: '6000-10000', value: '4' },
 				{ label: '1W以上', value: '5' }],
 			/* 房屋租售 */
-			zhuangxiuqingkuang:'请选择',
 			zxqkarry:[{ label: '毛坯', value: '0' },
 				{ label: '简装', value: '1' },
 				{ label: '精装', value: '2' },
@@ -489,12 +486,23 @@ export default {
 			/* 顺风车 */
 			chufadi:'',
 			mudidi:'',
-			chengkerenshu: '1人',
+			chengcherenshu: '1人',
 			chengcheshijian:ccsj,
 			msgcontent:'',
 			contactphone:'', // 联系电话
 			contactperson:'', // 联系人
-				
+			/* 招聘求职 */
+			gongzuozhiwei:'',
+			gongzuosex:'',
+			qiwangxinzi:'请选择',
+			gongzuojingyan:'请选择',
+			/* 房屋租售 */
+			fangwuweizhi : '',
+			zhuangxiuqingkuang:'请选择',
+			/* 二手交易 */
+			ershoujiaoyitype:'',
+			
+			
 		};
 	},
 	onLoad(e) {
@@ -536,8 +544,9 @@ export default {
 		showccsjPicker() {
 			this.$refs.ccsjpicker.show();
 		},
-		onConfirm(e) {
-			this.chengkerenshu = e.label;
+		confirmccrs(e) {
+			console.log(e);
+			this.chengcherenshu = e.label;
 		},
 		confirmccsj(e) {
 			this.chengcheshijian = e.selectRes;
@@ -682,10 +691,11 @@ export default {
 			}
 		},
 		qiuzhisexChange(e){
-			console.log(e.detail.value);
+			this.gongzuosex = e.detail.value;
+			 
 		},
 		eswupinChange(e){
-			console.log(e.detail.value);
+			this.ershoujiaoyitype = e.detail.value;
 		},
 		/* 获取当前的分类信息 */
 		getcurrenttypeinfo(id){
@@ -751,11 +761,61 @@ export default {
 					return "出发地不能为空!";
 				}
 			}
+			//招聘求职的验证
+			if(me.ptypename == 'zhaopinqiuzhi'){
+				
+				if(me.choosezhiweiarry.length == 0){
+					return "请您选择工作职位";
+				}
+				if(me.gongzuosex == ''){
+					return "请选择性别";
+				}
+				if(me.typename == 'qiuzhi'&&me.gongzuojingyan==''){
+					return "请选择工作经验";
+				}	
+				if(me.qiwangxinzi == '请选择'){
+					return "请选择职位薪资";
+				}
+			}
+			//房屋租售
+			if(me.ptypename=="fangwuzushou"&&(me.typename == 'chushou'||me.typename == 'chuzu')){
+				if(me.zhuangxiuqingkuang == '请选择'){
+					return "请选择房屋装修情况";
+				}
+				if(me.fangwuweizhi == ''){
+					return "请输入房屋位置";
+				}
+			}
+			//生意转让
+			if(me.ptypename == 'shengyizhuanrang'){
+				if(me.shengyihangye == '请选择'){
+					return "请选择所属行业";
+				}	
+			}
+			//汽车交易
+			if(me.ptypename == 'qichejiaoyi'){
+				if(me.cheliangjibie == '请选择'){
+					return "请选择车辆级别";
+				}	
+			}
+			//二手交易
+			if(me.ptypename == "ershoujiaoyi"){
+				if(me.ershoujiaoyitype == ''){
+					return "请选择发布类型";
+				}
+			}
+			
+			//下面的验证是公共的
 			if(me.msgcontent==""||me.msgcontent.length==0){
 				return "请简要描述发布的内容!";
 			}
-			
-			
+			if(me.contactperson==""||me.contactperson.length==0){
+				return "联系人信息不可为空!";
+			}
+			if(me.contactphone==""||me.contactphone.length==0){
+				return "联系电话不可为空!";
+			}
+			return ""; //正确的情况下返回空
 		},
 		/* 保存并前往信息置顶页面 */
 		gototoppage(){
@@ -774,14 +834,69 @@ export default {
 			}
 			
 			var tcinfo={};
+			//必填部分
 			tcinfo.msgptypeid = me.categoryinfo.pid;
+			tcinfo.guid = me.guid;
 			tcinfo.msgptypename = me.categoryinfo.pname;
 			tcinfo.msgtypeid = me.categoryinfo.id;
 			tcinfo.msgtypename = me.categoryinfo.name;
 			tcinfo.msgcontent = me.msgcontent;
 			if(me.choosetagarry.length>0) tcinfo.msgtags = me.choosetagarry.join(";"); //分类标签
 			tcinfo.contactperson = me.contactperson;
-			tcinfo.contackphone = me.contackphone;
+			tcinfo.contactphone = me.contactphone;
+			
+			
+			if(me.ptypename=='shunfengche'){ // 顺风车
+				tcinfo.chengcheshijian = me.chengcheshijian;
+				tcinfo.chengcherenshu = me.chengcherenshu;
+				tcinfo.chufadi = me.chufadi;
+				tcinfo.mudidi = me.mudidi;
+			}
+			
+			if(me.ptypename == 'zhaopinqiuzhi'){ //招聘求职
+				tcinfo.gongzuozhiwei = me.choosezhiweiarry.join(",");
+				tcinfo.gongzuosex = me.gongzuosex;
+				tcinfo.qiwangxinzi = me.qiwangxinzi;
+				if(me.typename == 'qiuzhi') tcinfo.gongzuojingyan = me.gongzuojingyan;
+			}
+			//房屋租售
+			if(me.ptypename=="fangwuzushou"&&(me.typename == 'chushou'||me.typename == 'chuzu')){
+				tcinfo.zhuangxiuqingkuang = me.zhuangxiuqingkuang;
+				tcinfo.fangwuweizhi = me.fangwuweizhi;
+			}
+			//生意转让
+			if(me.ptypename == 'shengyizhuanrang'){
+				tcinfo.shengyihangye = me.shengyihangye;
+			}
+			//汽车交易
+			if(me.ptypename == 'qichejiaoyi'){
+				tcinfo.cheliangjibie = me.cheliangjibie;
+			}
+			//二手交易
+			if(me.ptypename == "ershoujiaoyi"){
+				tcinfo.ershoujiaoyitype =  me.ershoujiaoyitype; 
+			}
+			
+			
+			console.log(tcinfo);
+			
+			me.webhttp({
+				url:me.websiteUrl + 'savetcinfo',
+				method:'POST',
+				data:tcinfo,
+				showloading:true
+			}).then(res=>{
+				console.info(res);
+				if(res.code == 200){
+					
+				}else{
+					uni.showToast({
+						icon:'none',
+						title:res.msg,
+						mask:true
+					});
+				}
+			});
 			
 			/* uni.redirectTo({
 				url:'/pages/publish/toppage/toppage'
