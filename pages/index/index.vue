@@ -40,7 +40,7 @@
 		 <!-- 轮播广告位  目前不加-->
 		 
 		 <!-- 列表详情 start-->
-		 <list-content @disdetail="gotodetail" :disall="true"></list-content>
+		 <list-content @disdetail="gotodetail" :tcinfolist="tcinfolist" :disall="true"></list-content>
 		 <list-content @disdetail="gotodetail" :disallimg="true"></list-content>
 		 <!-- 列表详情 end-->
 		 
@@ -83,8 +83,12 @@
 			return {
 				title: 'Hello',
 				mode:'selector',
+				page:1,
+				pagesize:15,
+				totalpage:1,
 				fenlei:'全部分类',
 				paixu:'默认排序',
+				tcinfolist:[],
 				fenleiarry: [{ label: '全部分类', value: '0' },{ label: '顺风车', value: '1' }, { label: '招聘求职', value: '2' },
 							{ label: '本地服务', value: '3' },{ label: '房屋租售', value: '4' },
 							{ label: '生意转让', value: '5' },{ label: '汽车交易', value: '6' },
@@ -112,6 +116,7 @@
 		onLoad() {
 			var me = this;
 			me.gettwocategory();
+			me.gettcinfolist();
 		},
 		methods: {
 			/* 打开分类选择框 */
@@ -159,17 +164,34 @@
 						me.classifyarry = res.list;
 					}
 				});
-				
-				/* uni.request({
-					url: me.websiteUrl + 'gettwocategory',
-					method: 'GET',
-					data: {},
-					success: res => {
-						console.info(res);
+			},
+			/* 获取同城信息 */
+			gettcinfolist(){
+				var me  = this;
+				me.webhttp({
+					url:me.websiteUrl + "gettcinfoList",
+					method:'GET',
+					data:{
+						page:me.page,
+						pagesize:me.pagesize,
+						qmap:{}
 					},
-					fail: () => {},
-					complete: () => {}
-				}); */
+					showloading:true
+				}).then(res=>{
+					console.log(res);
+					if(res.code == 200){
+						me.totalpage = res.totalpages;
+						me.page = me.page+1;
+						me.tcinfolist = me.tcinfolist.concat(res.tclist);
+						
+					}else{
+						uni.showToast({
+							title:res.msg,
+							mask:true,
+							icon:'none'
+						});
+					}
+				});
 			}
 		}
 	}

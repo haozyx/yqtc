@@ -1,14 +1,14 @@
 <template name="list-content">
 	<view>
 		<!-- 列表详情 start-->
-		<view class="listwrap">
+		<view class="listwrap" v-for="(tc,index) in tcinfolist" :key="index">
 			<image class="leftimg" @tap="disperinfos" src="../../static/img/index/nantx.png" ></image>
 			<view class="contentwrap" >
 				<!-- title 左右结构-->
 				<view class="titlewrap">
 					<view class="title-zd">置顶</view>
-					<view class="title-fl">招聘</view>
-					<view class="title-nicheng">樱桃小丸子樱桃小丸子樱桃小丸子樱桃小丸子</view>
+					<view class="title-fl">{{tc.msgtypename}}</view>
+					<view class="title-nicheng">{{tc.tcusernickname}}</view>
 					<view class="rightsee" @tap="gotodetail">
 						<image src="https://img.yohaoyun.com/yohaoyun/static/tc/eye.png" class="eyeimg"></image>
 						<view class="seetext" >详情</view>
@@ -18,156 +18,85 @@
 				<!-- 内容  start-->
 				
 				<view :class="{ contentbody: true, active: showall }">
-					<view class="tagtag">
-						<!-- primary、success、warning、danger、royal -->
-						<uni-tag inverted="true" type="primary" text="你好"></uni-tag>
-					</view>
-					<view class="tagtag">
-						<!-- primary、success、warning、danger、royal -->
-						<uni-tag inverted="true" type="error" text="你好"></uni-tag>
-					</view>
-					<view class="tagtag">
-						<!-- primary、success、warning、danger、royal -->
-						<uni-tag inverted="true" type="warning" text="你好"></uni-tag>
-					</view>
-					<view class="tagtag">
-						<!-- primary、success、warning、danger、royal -->
-						<uni-tag inverted="true" type="success" text="你好"></uni-tag>
-					</view>
-					<view class="">黄河路附近有单间出租.黄河路附近有单间出租.黄河路附近有单间出租.黄河路附近有单间出租.</view>
-					<!-- 招聘求职 start -->
-					<block v-if="ctype == 'zhaopin'">
-						<view>
-							<view class="content-tag">招聘职位 :</view>
-							公务员
+					<block v-if="tc.msgtags!='' ">
+						<view class="tagtag" v-for="(tag,tx) in tc.msgtags.split(';')" :key="tx">
+							<uni-tag inverted="true" :type="tagarry[tx%4]" :text="tag"></uni-tag>
 						</view>
-					</block>
-				
-					<block v-if="ctype == 'qiuzhi'">
+					 </block>
+					
+					<!--8 招聘求职 start  13 招聘 14求职-->
+					<block v-if="tc.msgptypeid == 8">
 						<view>
-							<view class="content-tag">期望职位 :</view>
-							公务员
+							<view class="content-tag">工作职位 :</view>
+							{{tc.gongzuozhiwei}}
 						</view>
 						<view>
 							<view class="content-tag">性别 :</view>
-							男
+							{{tc.gongzuosex}}
 						</view>
-						<view>
+						<view v-if="tc.msgtypeid == 14">
 							<view class="content-tag">工作经验 :</view>
-							5年
+							{{tc.gongzuojingyan}}
 						</view>
-						<view>
+						<view v-if="tc.msgtypeid == 13">
+							<view class="content-tag">岗位薪资 :</view>
+							{{tc.qiwangxinzi}}
+						</view>
+						<view v-if="tc.msgtypeid == 14">
 							<view class="content-tag">期望薪资 :</view>
-							1W-2W
+							{{tc.qiwangxinzi}}
 						</view>
 					</block>
 					<!-- 招聘求职 end -->
-					<!-- 顺风车 start -->
-					<block v-if="ctype == 'chezhaoren'">
+					<!-- 顺风车 start 9 == 顺风车 12 =天天拼 -->
+					<block v-if="tc.msgptypeid == 9">
 						<view>
 							<view class="content-tag">出发地 :</view>
-							英言乡
+							{{tc.chufadi}}
 						</view>
 						<view>
 							<view class="content-tag">目的地 :</view>
-							垣曲县
+							{{tc.mudidi}}
 						</view>
-						<view>
+						<view v-if="tc.msgtypeid != 12">
 							<view class="content-tag">出发时间 :</view>
-							2019年10月27日13:24:16
-						</view>
-						<view>
-							<view class="content-tag">剩余位置 :</view>
-							1个
-						</view>
-					</block>
-				
-					<block v-if="ctype == 'renzhaoche'">
-						<view>
-							<view class="content-tag">出发地 :</view>
-							英言乡
-						</view>
-						<view>
-							<view class="content-tag">目的地 :</view>
-							垣曲县
-						</view>
-						<view>
-							<view class="content-tag">出发时间 :</view>
-							2019年10月27日13:24:16
+							{{tc.chengcheshijian}}
 						</view>
 						<view>
 							<view class="content-tag">乘客人数 :</view>
-							2位
+							{{tc.chengkerenshu}}
 						</view>
 					</block>
-					<block v-if="ctype == 'tiantianpin'">
-						<view>
-							<view class="content-tag">出发地 :</view>
-							英言乡
-						</view>
-						<view>
-							<view class="content-tag">目的地 :</view>
-							垣曲县
-						</view>
-						<view>
-							<view class="content-tag">车找人 :</view>
-							随时联系
-						</view>
-						<view>
-							<view class="content-tag">可乘人数 :</view>
-							5人
-						</view>
-					</block>
+					 
 					<!-- 招聘求职 end -->
-					<!-- 房屋信息 end-->
-					<block v-if="ctype == 'fangwuchuzu'">
+					<!-- 房屋信息  start 5=房屋租售 6 出售 26出租 -->
+					<block v-if="tc.msgptypeid == 5">
+						<block v-if="tc.msgtypeid==6 || tc.msgtypeid==26">
 						<view>
-							<view class="content-tag">房屋位置 :</view>
-							黄河路时代春天对面民针具背后的家属院那里右拐
+							<view class="content-tag">房屋位置 : </view>
+							{{tc.fangwuweizhi}}
 						</view>
+						 
 						<view>
-							<view class="content-tag">房屋面积 :</view>
-							120平方米
+							<view class="content-tag">装修情况 : </view>
+							{{tc.zhuangxiuqingkuang}}
 						</view>
-						<view>
-							<view class="content-tag">房屋户型 :</view>
-							三室两厅
-						</view>
-						<view>
-							<view class="content-tag">装修情况 :</view>
-							精装
-						</view>
+						</block>
 					</block>
-					<block v-if="ctype == 'fangwuchushou'">
-						<view>
-							<view class="content-tag">房屋位置 :</view>
-							黄河路时代春天对面民针具背后的家属院那里右拐
-						</view>
-						<view>
-							<view class="content-tag">房屋面积 :</view>
-							120平方米
-						</view>
-						<view>
-							<view class="content-tag">房屋户型 :</view>
-							120平方米
-						</view>
-						<view>
-							<view class="content-tag">房屋售价 :</view>
-							120平方米
-						</view>
-					</block>
+			 
 					<!-- 房屋信息 end -->
 					<!-- 生意转让 start-->
-					<block v-if="ctype == 'fangwuchushou'">
+					<block v-if="tc.msgptypeid == 4">
 						<view>
-							<view class="content-tag">行业 :</view>
-							哈哈
+							<view class="content-tag">所属行业 :</view>
+							{{tc.shengyihangye}}
 						</view>
 					</block>
 				
 					<!-- 生意转让 end-->
-				
-					<view class="content-phone">15120034501</view>
+					<!-- 内容在标签下面 -->
+					<view class="">{{tc.msgcontent}}</view>
+					<view class="content-phone">{{tc.contactphone}}</view>
 				
 					<view class="callphone">
 						<fa-icon color="#FFFFFF" size="15" class="fa-phone"></fa-icon>
@@ -216,6 +145,10 @@ export default {
 		ctype: {
 			type: String,
 			default: ''
+		},
+		tcinfolist:{
+			type:Array,
+			default: ()=> []
 		},
 		tcbean:{},
 		disallimg:{
