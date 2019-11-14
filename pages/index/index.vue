@@ -40,8 +40,7 @@
 		 <!-- 轮播广告位  目前不加-->
 		 
 		 <!-- 列表详情 start-->
-		 <list-content @disdetail="gotodetail" :tcinfolist="tcinfolist" :disall="true"></list-content>
-		 <list-content @disdetail="gotodetail" :disallimg="true"></list-content>
+		 <list-content @disdetail="gotodetail" :tcinfolist="tcinfolist" :disall="false"></list-content>
 		 <!-- 列表详情 end-->
 		 
 		 <!-- 防止顶到最下方start -->

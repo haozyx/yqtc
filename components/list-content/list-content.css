@@ -69,7 +69,7 @@
 }
 .cont-img-wrap.active{
 	height: auto;
-	min-height: 100px;
+	min-height: 80px;
 }
 .cont-img{
 	width: 80px;
@@ -99,14 +99,17 @@
 .contentbody{
 	font-size: 14px;
 	margin-top: 10px;
-	height: 58px;
+	height: 160upx;
 	overflow: hidden;
 }
 .contentbody.active{
 	height: auto;
 	min-height: 100px;
 }
-
+.msgcontent{
+	padding: 0 10upx 0 0;
+	line-height: 22px;
+}
 .content-tag{
 	display: inline-block;
 	color:#FF7F00;

@@ -6,7 +6,7 @@
 			<view class="contentwrap" >
 				<!-- title 左右结构-->
 				<view class="titlewrap">
-					<view class="title-zd">置顶</view>
+					<view class="title-zd" v-if="tc.istop==1">置顶</view>
 					<view class="title-fl">{{tc.msgtypename}}</view>
 					<view class="title-nicheng">{{tc.tcusernickname}}</view>
 					<view class="rightsee" @tap="gotodetail">
@@ -17,7 +17,7 @@
 
 				<!-- 内容  start-->
 				
-				<view :class="{ contentbody: true, active: showall }">
+				<view :class="{ contentbody: true, active: clickarry.indexOf(index) != -1 }">
 					<block v-if="tc.msgtags!='' ">
 						<view class="tagtag" v-for="(tag,tx) in tc.msgtags.split(';')" :key="tx">
 							<uni-tag inverted="true" :type="tagarry[tx%4]" :text="tag"></uni-tag>
@@ -92,10 +92,18 @@
 							{{tc.shengyihangye}}
 						</view>
 					</block>
-				
 					<!-- 生意转让 end-->
+					<!-- 2 二手交易 start -->
+					<block v-if="tc.msgptypeid == 2">
+						<view>
+							<view class="content-tag">交易类型 :</view>
+							{{tc.ershoujiaoyitype}}
+						</view>
+					</block>
+					<!-- 二手交易 end -->
+					
 					<!-- 内容在标签下面 -->
-					<view class="">{{tc.msgcontent}}</view>
+					<view class="msgcontent">{{tc.msgcontent}}</view>
 					<view class="content-phone">{{tc.contactphone}}</view>
 				
 					<view class="callphone">
@@ -108,22 +116,23 @@
 					</view>
 				</view>
 				<!-- 显示全文-->
-				<view class="disall" @tap="showall = !showall">{{ showall==true ? '隐藏' : '显示全文' }}</view>
+				<view class="disall" @tap="disorhide(index)">{{clickarry.indexOf(index) != -1? '隐藏' : '显示全文'}}</view>
+			 
 				<!-- 内容  end-->
 				 
 
 				<!-- 图片 -->
-				<view class="cont-img-wrap" :class="{ active: showallimg }">
-					<image class="cont-img" src="../../static/img/index/meinv.jpg"></image>
-					<image class="cont-img" src="../../static/img/index/meinv.jpg"></image>
-					<view class="moreimg-wrap">
-						<image class="cont-img" src="../../static/img/index/meinv.jpg"></image>
-						<view class="moreimg-text" :class="{ showmore: showallimg }" @tap="showallimg=!showallimg">更多图片</view>
+					<view class="cont-img-wrap" :class="{ active: showallimg }" v-if="tc.imglist.length>0">
+						<block v-for="(tcimg,imgindex) in tc.imglist" :key="imgindex">
+							<image class="cont-img" :src="tcimg.imgurl" v-if="imgindex != 2"></image>
+							<view class="moreimg-wrap" v-if="imgindex == 2">
+								<image class="cont-img" :src="tcimg.imgurl"></image>
+								<view class="moreimg-text" :class="{ showmore: showallimg }" @tap="showallimg=!showallimg">更多图片</view>
+							</view>
+						 </block>
 					</view>
-					<image class="cont-img" src="../../static/img/index/meinv.jpg"></image>
-				</view>
-
-				<list-foot></list-foot>
+			 
+				<list-foot :tcinfo="tc"></list-foot>
 			</view>
 		</view>
 
@@ -169,17 +178,36 @@ export default {
 		if(me.disallimg){
 			me.showallimg = true;
 		}
+		 
 	},
 	data() {
 		return {
 			showall:false,
+			curindex:-1,
 			showallimg:false,
+			clickarry:[],
 			tagarry:['success','error','warning','primary']
 		};
 	},
 	methods:{
+		disorhide(a){
+			var me = this;
+			 
+			/* if(me.curindex == a){
+				me.curindex =-1;
+			}else{
+				me.curindex = a;
+			} */
+			//使用数组的方式可以进行多项的隐藏显示   使用curindex方式全局只能一个
+			if (me.clickarry.indexOf(a) != -1) {
+				me.clickarry.splice(me.clickarry.indexOf(a), 1);
+			} else {
+				me.clickarry.push(a);
+			}
+			
+		 
+		},
 		gotodetail(){
-			console.info("1333");
 			this.$emit('disdetail',{a:1});
 		},
 		disperinfos(){

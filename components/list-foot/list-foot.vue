@@ -4,9 +4,9 @@
 		<view class="timewrap">
 			<view class="viewwrap">
 				<image src="https://img.yohaoyun.com/yohaoyun/static/tc/heart1.png" class="viewleftimg"></image>
-				<view class="view-count">110 浏览量 、</view>
+				<view class="view-count">{{tcinfo.msgviews}} 浏览量 、</view>
 			</view>
-			<view class="timetext">{{timestampFormat('2019-11-08 20:53:54')}}</view>
+			<view class="timetext">{{timestampFormat(tcinfo.msgpublishtime)}}</view>
 			<fa-icon class="fa-commenting-o" size="14" style="margin-left: auto;" color="#999999" @tap="dhflag=!dhflag"></fa-icon>
 			<!-- 动画组件-->
 			<view class="donghuawrap" :class="{gdshow:dhflag}">
@@ -30,7 +30,7 @@
 							
 		</view>
 		<!-- 上三角 -->
-		<view class="shangsanjiao"> </view>
+<!-- 		<view class="shangsanjiao"> </view>
 		<view class="comment-wrap">
 			<view class="comment-item">
 				<view class="comment-nickname">小小微 : </view>
@@ -43,7 +43,7 @@
 			<view class="morecomment">
 				查看更多评论
 			</view>
-		</view>
+		</view> -->
 		
 		
 		<!-- 弹出层 -->
@@ -71,6 +71,9 @@
 		name:"listFoot",
 		components:{
 			uniPopup,
+		},
+		props:{
+			tcinfo:{}
 		},
 		data() {
 			return {
