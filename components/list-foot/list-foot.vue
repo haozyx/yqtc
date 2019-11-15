@@ -30,20 +30,18 @@
 							
 		</view>
 		<!-- 上三角 -->
-<!-- 		<view class="shangsanjiao"> </view>
-		<view class="comment-wrap">
-			<view class="comment-item">
-				<view class="comment-nickname">小小微 : </view>
-				哈哈哈哈哈哈
-			</view>
-			<view class="comment-item">
-				<view class="comment-nickname">小小微 : </view>
-				哈个屁
-			</view>
-			<view class="morecomment">
-				查看更多评论
-			</view>
-		</view> -->
+		<view class="shangsanjiao"> </view>
+		<view class="comment-wrap" v-if="tcinfo.commentlist.length>0">
+			<block  v-for="(co,cindex) in tcinfo.commentlist" :key="cindex"  >
+				<view class="comment-item" @tap="gotohuifu(co)">
+					<view class="comment-nickname">{{co.fromunickname}} : </view>
+					{{co.content}}
+				</view>
+			</block>
+			<!-- <view class="morecomment" v-if="tcinfo.commentlist.length>2">
+				查看更多评论(共{{tcinfo.commentlist.length}}条)
+			</view> -->
+		</view>
 		
 		
 		<!-- 弹出层 -->
@@ -52,7 +50,7 @@
 				<view class="auditwraper">
 					<view class="head-title">留言内容</view>
 					<view class="textareawrap1">
-						<textarea maxlength="20" placeholder="输入...." class="text-input" style="border: 1px solid #F1F1F1 ;"></textarea>
+						<textarea maxlength="50" v-model="msgcomment" :placeholder="placetext" class="text-input" style="border: 1px solid #F1F1F1 ;padding: 5px;"></textarea>
 						
 					</view>
 					<view class="audit-bottom">
@@ -60,6 +58,12 @@
 						<view class="audit-text ok globalblue" @tap="accessyes"> 确定</view>
 					</view>
 				</view> 
+			</uni-popup>
+			<!-- 弹出提示层 -->
+			<uni-popup type="center" ref="hintref" :custom="true" :mask-click="true">
+				<view class="uni-tip">
+					<view class="uni-tip-content" style="color:red;">请输入留言内容!</view>
+				</view>
 			</uni-popup>
 		</view>
 	</view>
@@ -75,21 +79,67 @@
 		props:{
 			tcinfo:{}
 		},
+		created(){
+			var me = this;
+			var user = me.getGlobalTCUser();
+			if(user){
+				me.userid = user.id;
+				me.usernickname = user.nickname;
+			}
+		},
 		data() {
 			return {
 				dhflag:false,
+				msgcomment:'',
+				placetext:'输入内容...',
+				userid:0,
+				usernickname:'',
 			};
 		},
 		methods:{
 			/* 打开留言框 */
 			showmessagepop(){
+				this.placetext = "输入内容...";
 				this.$refs.messagepop.open();
+				this.dhflag=!this.dhflag;//隐藏动画
+			},
+			/* 对评论进行回复 */
+			gotohuifu(co){
+				var  me = this;
+				if(me.userid == co.fromuid) return ; //自己点自己的回复不进行任何操作
+				me.placetext = '回复'+co.fromunickname;
+				this.$refs.messagepop.open();	
+				this.dhflag=!this.dhflag;//隐藏动画
 			},
 			accessno(){
+				this.placetext = "输入内容...";
 				this.$refs.messagepop.close();
 			},
 			accessyes(){
-				console.log("点击了确定");
+				var me = this;
+				
+				if(me.msgcomment==""){
+					me.$refs.hintref.open();
+					return;
+				}
+				
+				var commentbean={};
+				commentbean.msgid = me.tcinfo.id;
+				commentbean.msgtype =1;
+				commentbean.content = me.msgcomment;
+				//用户的ID
+				commentbean.fromuid = me.userid;
+				commentbean.fromunickname = me.usernickname;
+				console.info(commentbean);
+				me.webhttp({
+					url:me.websiteUrl + 'savemsgcomment',
+					method:'POST',
+					data:commentbean,
+					showloading:true
+				}).then(res=>{
+					console.log(res);	
+				});
+				
 				this.$refs.messagepop.close();
 			},
 			collectinfo(){
@@ -97,7 +147,7 @@
 					title: '收藏成功',
 					icon:'none'
 				});
-				this.dhflag=!this.dhflag;
+				this.dhflag=!this.dhflag;//隐藏动画
 			},
 			gotoreport(){
 				uni.navigateTo({

@@ -3,12 +3,12 @@
 		
 		<view class="header">
 			<view >
-				<image src="http://122.152.205.72:88/group1/M00/00/05/CpoxxFw_-5-AFyVyAABLIH8xBTw233.png" class="face"></image>
+				<image src="https://img.yohaoyun.com/yohaoyun/tongcheng/nantx.png" class="face"></image>
 			</view>
 			
 			<view class="info-wapper">
 				<view class="nickname">
-					晴天有雨
+					{{userobj.nickname}}
 				</view>
 				<navigator url="updateme/updateme">
 				<view class="nav-info">修改资料 <fa-icon class="fa-angle-right" style="margin-left: 10px;" size="20" color="#ffffff"></fa-icon> </view>
@@ -73,7 +73,15 @@
 	export default {
 		data() {
 			return {
-				
+				userid:undefined,
+				userobj:{},
+			}
+		},
+		onLoad(){
+			var me = this;
+			var user = me.getGlobalTCUser();
+			if(user){
+				me.userobj = user;
 			}
 		},
 		methods: {
@@ -81,7 +89,22 @@
 				uni.navigateTo({
 					url:'/pages/me/minetcinfo/minetcinfo'
 				})
-			}
+			},
+			/* 获取我的信息 */
+			getmeinfo(){
+				var me =this;
+				me.webhttp({
+					url:me.websiteUrl + 'gettcuserbyid',
+					method:'GET',
+					data:{
+						id:me.userid
+					}
+				}).then(res=>{
+					if(res.code==200){
+						me.userobj = res.tcuser;
+					}
+				});
+			},
 		}
 	}
 </script>

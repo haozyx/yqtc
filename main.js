@@ -15,6 +15,16 @@ Vue.prototype.websiteUrl = 'http://localhost:8089/ycxq/m/tc/';
 //封装的promise方法
 Vue.prototype.webhttp = Http
 
+Vue.prototype.getGlobalTCUser = function(key) {
+	var userInfo = uni.getStorageSync("tcuser");
+	if (userInfo != null && userInfo != "" && userInfo != undefined) {
+		return userInfo;
+	} else {
+		return null;
+	}
+}
+
+
 App.mpType = 'app'
 
 const app = new Vue({

@@ -104,6 +104,20 @@
 	line-height: 20;
 }
 
+/* 置顶start */
+.back-top{
+	position: fixed;
+	bottom:80px;
+	right: 10px;
+	height: 30px;
+	border-radius: 50%;
+	background: #808080;
+}
+.back-top image {
+  width: 30px;
+  height: 30px;
+}
+/* 置顶end */
 
 
 	

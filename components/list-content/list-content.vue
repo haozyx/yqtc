@@ -121,17 +121,27 @@
 				<!-- 内容  end-->
 				 
 
-				<!-- 图片 -->
-					<view class="cont-img-wrap" :class="{ active: showallimg }" v-if="tc.imglist.length>0">
-						<block v-for="(tcimg,imgindex) in tc.imglist" :key="imgindex">
-							<image class="cont-img" :src="tcimg.imgurl" v-if="imgindex != 2"></image>
-							<view class="moreimg-wrap" v-if="imgindex == 2">
-								<image class="cont-img" :src="tcimg.imgurl"></image>
-								<view class="moreimg-text" :class="{ showmore: showallimg }" @tap="showallimg=!showallimg">更多图片</view>
-							</view>
-						 </block>
+				<!-- 图片 小于三个图片直接显示 -->
+				<block v-if="tc.imglist.length>0&&tc.imglist.length<=3"> 
+					<view class="cont-img-wrap">
+						<block  v-for="(tcimg,imgindex) in tc.imglist" :key="imgindex">	
+							<image class="cont-img" :src="tcimg.imgurl" @tap="preview(tc,imgindex)"  ></image>
+						</block>
 					</view>
-			 
+				</block>
+				<!-- 大于三个图片为了显示美观增加查看最多的按钮 -->
+				<block v-if="tc.imglist.length>3">
+					<view class="cont-img-wrap" :class="{active:clickimgarry.indexOf(index) != -1 }" >
+						<block  v-for="(tcimg,imgindex) in tc.imglist" :key="imgindex">	
+							<image class="cont-img" @tap="preview(tc,imgindex)" :src="tcimg.imgurl" v-if="imgindex != 2"></image>
+							<view class="moreimg-wrap" v-if="imgindex == 2">
+								<image class="cont-img" @tap="preview(tc,imgindex)" :src="tcimg.imgurl"></image>
+								<view class="moreimg-text" :class="{ showmore: clickimgarry.indexOf(index) != -1 }" @tap="dismoreimg(index)">更多图片</view>
+							</view>
+						</block>
+					</view>
+				</block>
+				
 				<list-foot :tcinfo="tc"></list-foot>
 			</view>
 		</view>
@@ -185,11 +195,25 @@ export default {
 			showall:false,
 			curindex:-1,
 			showallimg:false,
-			clickarry:[],
+			clickarry:[], // 显示隐藏更多
+			clickimgarry:[], //显示隐藏更多图片
 			tagarry:['success','error','warning','primary']
 		};
 	},
 	methods:{
+		/* 预览图片 */
+		preview(tcbean,imgindex) {
+			var imgarr = [];
+			tcbean.imglist.forEach(imgbean=>{
+				imgarr.push(imgbean.imgurl);
+			}
+			);
+			var index = parseInt(imgindex);
+			uni.previewImage({
+				urls: imgarr,
+				current: index 
+			});
+		},
 		disorhide(a){
 			var me = this;
 			 
@@ -204,8 +228,14 @@ export default {
 			} else {
 				me.clickarry.push(a);
 			}
-			
-		 
+		},
+		dismoreimg(b){
+			var me  = this;
+			if (me.clickimgarry.indexOf(b) != -1) {
+				me.clickimgarry.splice(me.clickimgarry.indexOf(b), 1);
+			} else {
+				me.clickimgarry.push(b);
+			}
 		},
 		gotodetail(){
 			this.$emit('disdetail',{a:1});

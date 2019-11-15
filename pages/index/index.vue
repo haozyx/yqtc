@@ -47,9 +47,11 @@
 		 <view class="whitespace"></view>
 		 <!-- 防止顶到最下方end -->
 		 
-		 
-		 
-		 
+		 <!-- 返回到最顶部 start-->
+		 <view class="back-top" v-if="showBackTop" @tap="goTop">
+		 	<image src="../../static/img/top.png"></image>
+		 </view>
+		 <!-- 返回到最顶部 end-->
 		 
 		 
 		 
@@ -81,6 +83,8 @@
 		data() {
 			return {
 				title: 'Hello',
+				backtoTop:500,
+				showBackTop: false,
 				mode:'selector',
 				page:1,
 				pagesize:15,
@@ -112,6 +116,11 @@
 			mpvuePicker,
 			listContent,
 		},
+		onPageScroll(e) {
+			var me = this;
+			var scrollTop = e.scrollTop;
+			me.showBackTop = me.backtoTop < scrollTop;
+		},
 		onLoad() {
 			var me = this;
 			me.gettwocategory();
@@ -136,6 +145,13 @@
 			},
 			onCancel(e) {
 				 console.log(e);
+			},
+			//返回到页面顶部
+			goTop(){
+				uni.pageScrollTo({
+					scrollTop: 0,
+					duration: 300
+				}); 
 			},
 			/* 打开分类选择框  end*/
 			gotodetail(){

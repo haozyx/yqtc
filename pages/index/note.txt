@@ -5,3 +5,16 @@ https://github.com/MPComponent/mpvue-picker
 
 右箭头
 fa-angle-right
+
+2.发起请求的模板
+me.webhttp({
+	url:me.websiteUrl + '',
+	method:'GET',
+	data:{
+			
+	}
+}).then(res=>{
+		
+});
+3.弹出层组件
+https://ext.dcloud.net.cn/plugin?id=329

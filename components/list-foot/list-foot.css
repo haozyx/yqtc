@@ -141,4 +141,69 @@
 .ok{
 	border-top:#F1F1F1 solid 1px;
 }
- 	 
+
+
+/* 提示窗口 */
+	.uni-tip {
+		padding: 15px;
+		width: 200px;
+		background: #fff;
+		box-sizing: border-box;
+		border-radius: 10px;
+	}
+
+	.uni-tip-title {
+		text-align: center;
+		font-weight: bold;
+		font-size: 16px;
+		color: #333;
+	}
+
+	.uni-tip-content {
+		padding: 15px;
+		font-size: 14px;
+		color: #666;
+	}
+
+	.uni-tip-group-button {
+		margin-top: 10px;
+		display: flex;
+	}
+
+	.uni-tip-button {
+		width: 100%;
+		text-align: center;
+		font-size: 14px;
+		color: #3b4144;
+	}
+.mytips {
+	padding: 40upx;
+	width: 500upx;
+	background: #fff;
+	box-sizing: border-box;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	font-size: 20px;
+}
+
+.mytip-button{
+	display: flex;
+	flex-direction: row;
+	margin-top: 70upx;
+	justify-content: flex-end;
+}
+.mytip-title{
+	 
+}
+
+.tip-cancle-button{
+	font-size: 18px;
+	color: #C8C7CC;
+	margin-right: 20px;
+	padding-top: 5upx;
+}
+.tip-confirm-button{
+	color: #DD524D;
+} 	 

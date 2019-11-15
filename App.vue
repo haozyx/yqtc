@@ -1,6 +1,7 @@
 <script>
 	export default {
 		onLaunch: function() {
+			uni.setStorageSync('tcuser',{id:1,nickname:'晴天有雨',sex:'1'});
 		},
 		onShow: function() {
 		},
