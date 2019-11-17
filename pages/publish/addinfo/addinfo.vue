@@ -395,6 +395,8 @@ export default {
 		return {
 			mode: 'selector',
 			tagarry:[],
+			userid:0,
+			userobj:{},
 			myimgurl:'https://img.yohaoyun.com/yohaoyun/commphoto/jia.png',
 			isfree:1,
 			placeholdertext:"请简要说明您的物品的名称等各项情况,请不要填写手机或者QQ。",
@@ -507,10 +509,18 @@ export default {
 	},
 	onLoad(e) {
 		var me = this;
-		var cid = e.categoryid;
-		me.categoryid = cid;
-		me.getcurrenttypeinfo(cid);
-		me.getguid();
+		
+		var user = me.getGlobalTCUser();
+		if(user){
+			var cid = e.categoryid;
+			me.categoryid = cid;
+			me.getcurrenttypeinfo(cid);
+			me.getguid();
+			me.userobj = user;
+			me.userid = user.id;
+			
+		}
+		
 	},
 	methods: {
 		/* 打开乘车人数选择框 */
@@ -748,6 +758,10 @@ export default {
 		valid(){
 			var me = this;
 			
+			if(me.userid == 0){
+				return '用户未注册.';
+			}
+			
 			if(me.guid == '' || me.categoryid == ''){
 				return '服务端获取GUID错误';
 			}
@@ -837,6 +851,11 @@ export default {
 			//必填部分
 			tcinfo.msgptypeid = me.categoryinfo.pid;
 			tcinfo.guid = me.guid;
+			//用户信息start 
+			tcinfo.tcuserid = me.userid;
+			tcinfo.tcuserimg = me.userobj.touxiangimg;
+			tcinfo.tcusernickname = me.userobj.nickname;
+			//用户信息 end
 			tcinfo.msgptypename = me.categoryinfo.pname;
 			tcinfo.msgtypeid = me.categoryinfo.id;
 			tcinfo.msgtypename = me.categoryinfo.name;
@@ -886,9 +905,11 @@ export default {
 				data:tcinfo,
 				showloading:true
 			}).then(res=>{
-				console.info(res);
+				 
 				if(res.code == 200){
-					
+					uni.redirectTo({
+						url: '../toppage/toppage?msgid='+res.msgid
+					});
 				}else{
 					uni.showToast({
 						icon:'none',

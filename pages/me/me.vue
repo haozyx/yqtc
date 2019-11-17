@@ -3,7 +3,8 @@
 		
 		<view class="header">
 			<view >
-				<image src="https://img.yohaoyun.com/yohaoyun/tongcheng/nantx.png" class="face"></image>
+				<!-- <image src="https://img.yohaoyun.com/yohaoyun/tongcheng/nantx.png" class="face"></image> -->
+				<image :src="userobj.touxiangimg" class="face"></image>
 			</view>
 			
 			<view class="info-wapper">
@@ -23,7 +24,7 @@
 			</view>
 		</view>
 		<view class="body">
-			<view class="textwrap" >
+			<view class="textwrap" @tap="gotoshoucang">
 				<view class="leftwrap">
 					<image class="leftimg" src="../../static/img/me/shoucang.png"></image>
 					<view class="lefttext">我的收藏</view>
@@ -49,7 +50,7 @@
 			</view>
 			<view class="line-wrap"> <view class="line"></view> </view>
 			
-			<view class="textwrap">
+			<view class="textwrap" @tap="gotomytidings">
 				<view class="leftwrap">
 					<image class="leftimg" src="../../static/img/me/liuyan.png"></image>
 					<view class="lefttext">私信管理</view>
@@ -88,6 +89,17 @@
 			gotominetcinfo(){
 				uni.navigateTo({
 					url:'/pages/me/minetcinfo/minetcinfo'
+				})
+			},
+			gotoshoucang(){
+				uni.navigateTo({
+					url:'/pages/me/shoucang/shoucang'
+				})
+			},
+			/* 前往我的私信界面 */
+			gotomytidings(){
+				uni.navigateTo({
+					url:'mytidings/mytidings'
 				})
 			},
 			/* 获取我的信息 */

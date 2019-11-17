@@ -73,6 +73,7 @@
 		onLoad(){
 			var me = this;
 			var user = me.getGlobalTCUser();
+			console.info(user);
 			if(user){
 				me.userid = user.id;
 				me.getmeinfo();

@@ -1,0 +1,30 @@
+.buywrap{
+	display: flex;
+	flex-direction: column;
+}
+.title{
+	background-color: #F7F7F7;
+	color: #000000;
+	font-size: 20px;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	border-top: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
+}
+.textitem{
+	font-size: 14px;
+	color: #999999;
+	display: flex;
+	flex-direction: row;
+	padding: 20upx;
+	justify-content: space-between;
+}
+.btn{
+	width: 60%;
+	margin-top: 60px;
+}
+.redtext{
+	font-size: 16px;
+	color: red;
+}

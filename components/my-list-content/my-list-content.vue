@@ -1,4 +1,4 @@
-<template name="list-content">
+<template name="my-list-content">
 	<view>
 		<!-- 列表详情 start-->
 		<view class="listwrap" v-for="(tc,index) in tcinfolist" :key="index">
@@ -147,10 +147,12 @@
 					<list-foot :tcinfo="tc"></list-foot>
 				</view>
 				</view>
-			<view class="bottombtnwrap" v-if="btnarry.length>0">
-				<block v-for="(btn,bindex) in btnarry" :key="bindex">
-					<button type="default"  @tap="handleclick(btn,tc.id,index)"  class="optbtn">{{btn}}</button>
-			    </block>
+			<view class="bottombtnwrap"  >
+				<button type="default" v-if="tc.status == '1'"   class="optbtn">刷新</button>
+				<button type="default" v-if="tc.status == '1'"     class="optbtn">置顶</button>
+				<button type="default"  v-if="tc.status == '3'" @tap="gotobuy"   class="optbtn">支付</button>
+				<button type="default"  v-if="tc.status == '1'" class="optbtn">下架</button>
+				<button type="default"  v-if="tc.status == '0'" class="optbtn">上架</button>
 			</view>
 		</view>
 		
@@ -163,7 +165,7 @@ import listFoot from '../list-foot/list-foot.vue';
 //标签
 import uniTag from '@/components/uni-tag/uni-tag.vue';
 export default {
-	name: 'list-content',
+	name: 'my-list-content',
 	components:{
 		listFoot,
 		uniTag,
@@ -266,6 +268,12 @@ export default {
 		handleclick(btntext,msgid,index){
 			this.$emit('btnclick',{btntext:btntext,msgid:msgid,arryindex:index});	
 		},
+		/* 前往支付页面 */
+		gotobuy(){
+			uni.navigateTo({
+				url:'/pages/buy/buy'
+			})
+		},
 		/* 前往发送消息界面 */
 		gotochat(tcuserid){
 			var me = this;
@@ -289,5 +297,5 @@ export default {
 </script>
 
 <style>
-@import url('list-content.css');
+@import url('my-list-content.css');
 </style>

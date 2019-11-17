@@ -7,7 +7,11 @@
 	/* 关闭统计 */
 	"uniStatistics": {  
 	    "enable": false//全局关闭  
-	}, 
+	},
+	"networkTimeout":{
+	 	"request":30000,
+	 	"uploadFile":30000
+	},
 	"transformPx": false,
     /* 5+App特有相关 */
 	"app-plus": {

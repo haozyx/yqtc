@@ -52,6 +52,9 @@
 				current: 3,
 			}
 		},
+		onLoad(e) {
+			console.log(e);
+		},
 		methods: {
 			/* 单选框改变时间 */
 			radioChange: function(evt) {

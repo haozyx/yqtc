@@ -1,16 +1,3 @@
-.carousel{
-	width: 100%;
-	height: 193upx;
-}
-/* 覆盖组件内的样式 */
->>> .rightsee{
-	display: none !important;
-}
->>> .uni-tag{
-	padding: 12px 6px;
-	height: 20px;
-	line-height: 20;
-}
 /* list列表 start 要分为6类*/
 .listwrap{
 	display: flex;
@@ -30,8 +17,8 @@
 	width: 50px;
 	height: 50px;
 	margin-right: 10px;
-	border-radius: 50%;
 	flex-shrink: 0;
+	border-radius: 50%;
 }
 .titlewrap{
 	display: flex;
@@ -79,10 +66,11 @@
 .cont-img-wrap{
 	display: flex;
 	flex-direction: row;
-
-	width: 260px;
+	height: 80px;
+	width: 240px;
 	margin-top: 5px;
 	flex-wrap: wrap;
+	overflow: hidden;
 }
 .cont-img-wrap.active{
 	height: auto;
@@ -91,8 +79,6 @@
 .cont-img{
 	width: 80px;
 	height: 80px;
-	margin-bottom: 2px;
-	margin-right: 2px;
 }
 .moreimg-wrap{
 	position: relative;
@@ -184,5 +170,7 @@
 	color: #000000;
 	margin-left: 5px;
 	margin-right: 5px;
+	font-size: 14px;
+	border: 1px solid #ffa347;
 }
 /* 底部的按钮 start */

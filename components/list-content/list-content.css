@@ -1,10 +1,14 @@
 /* list列表 start 要分为6类*/
 .listwrap{
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	padding: 20upx 20upx 10upx 20upx;
 	background-color: #FFFFFF;
 	border-bottom: 1px solid #EEE;
+}
+.listwrap1{
+	display: flex;
+	flex-direction: row;
 }
 .contentwrap{
 	width: 90%;
@@ -14,6 +18,7 @@
 	height: 50px;
 	margin-right: 10px;
 	flex-shrink: 0;
+	border-radius: 50%;
 }
 .titlewrap{
 	display: flex;
@@ -99,7 +104,7 @@
 .contentbody{
 	font-size: 14px;
 	margin-top: 10px;
-	height: 160upx;
+	height: 180upx;
 	overflow: hidden;
 }
 .contentbody.active{
@@ -115,6 +120,7 @@
 	color:#FF7F00;
 	font-size: 14px;
 	font-weight: bold;
+	margin-right: 5px;
 }	
 .tagtag{
 	margin: 0 3px 3px 0;
@@ -149,3 +155,20 @@
 	font-weight: bold;
 	margin-top: 5px;
 }
+/* 底部的按钮 start */
+.bottombtnwrap{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	flex-shrink: 0;
+	padding: 5px 0px 5px 10px;
+	margin-top: 5px;
+}
+.optbtn{
+	display: inline-block;
+	background: #FFFFFF;
+	color: #000000;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+/* 底部的按钮 start */

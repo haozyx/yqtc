@@ -14,7 +14,27 @@ me.webhttp({
 			
 	}
 }).then(res=>{
+	if(res.code == 200){
 		
+	}else{
+		uni.showToast({
+			title: res.msg,
+			icon:'none',
+			mask:true
+		});
+	}	
 });
 3.弹出层组件
 https://ext.dcloud.net.cn/plugin?id=329
+4.3秒后跳转
+setTimeout(()=>{
+	uni.switchTab({
+		url:'/pages/index/index'
+	});
+},3000);
+5.获取用户信息
+var me = this;
+var user = me.getGlobalTCUser();
+if(user){
+	
+}

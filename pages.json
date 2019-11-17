@@ -53,7 +53,23 @@
         }
         ,{
             "path" : "pages/report/report",
-            "style" : {}
+             "style" : {"titleNView":false}
+        }
+        ,{
+            "path" : "pages/me/shoucang/shoucang",
+            "style" : {"titleNView":false}
+        }
+        ,{
+            "path" : "pages/imchat/imchat",
+            "style" : {"titleNView":false}
+        }
+        ,{
+            "path" : "pages/me/mytidings/mytidings",
+            "style" : {"titleNView":false}
+        }
+        ,{
+            "path" : "pages/buy/buy",
+            "style" : {"titleNView":false}
         }
     ],
 	"globalStyle": {

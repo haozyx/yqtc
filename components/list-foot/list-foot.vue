@@ -34,7 +34,7 @@
 		<view class="comment-wrap" v-if="tcinfo.commentlist.length>0">
 			<block  v-for="(co,cindex) in tcinfo.commentlist" :key="cindex"  >
 				<view class="comment-item" @tap="gotohuifu(co)">
-					<view class="comment-nickname">{{co.fromunickname}} : </view>
+					<view class="comment-nickname">{{co.fromunickname}} <view class="comment-nickname" v-if="co.touid!='' " >@{{co.tounickname}}   </view>: </view>
 					{{co.content}}
 				</view>
 			</block>
@@ -93,6 +93,7 @@
 				msgcomment:'',
 				placetext:'输入内容...',
 				userid:0,
+				commentobj:null,
 				usernickname:'',
 			};
 		},
@@ -101,18 +102,20 @@
 			showmessagepop(){
 				this.placetext = "输入内容...";
 				this.$refs.messagepop.open();
-				this.dhflag=!this.dhflag;//隐藏动画
+				//this.dhflag=!this.dhflag;//隐藏动画
 			},
 			/* 对评论进行回复 */
 			gotohuifu(co){
 				var  me = this;
 				if(me.userid == co.fromuid) return ; //自己点自己的回复不进行任何操作
+				me.commentobj = co;
 				me.placetext = '回复'+co.fromunickname;
 				this.$refs.messagepop.open();	
-				this.dhflag=!this.dhflag;//隐藏动画
+				//this.dhflag=!this.dhflag;//隐藏动画
 			},
 			accessno(){
 				this.placetext = "输入内容...";
+				this.commentobj = null;
 				this.$refs.messagepop.close();
 			},
 			accessyes(){
@@ -125,33 +128,79 @@
 				
 				var commentbean={};
 				commentbean.msgid = me.tcinfo.id;
-				commentbean.msgtype =1;
+				if(me.commentobj!=null){
+					commentbean.msgtype =2;
+					commentbean.touid = me.commentobj.fromuid;
+					commentbean.tounickname = me.commentobj.fromunickname;
+				}else{
+					commentbean.touid='';
+					commentbean.msgtype =1;
+				}
+				
 				commentbean.content = me.msgcomment;
 				//用户的ID
 				commentbean.fromuid = me.userid;
 				commentbean.fromunickname = me.usernickname;
 				console.info(commentbean);
+				//首页实时更新评论列表。。不用请求后台就可以显示
+				me.tcinfo.commentlist.splice(0,0,commentbean);
+					
+				 
 				me.webhttp({
 					url:me.websiteUrl + 'savemsgcomment',
 					method:'POST',
 					data:commentbean,
 					showloading:true
 				}).then(res=>{
-					console.log(res);	
-				});
+					this.dhflag=!this.dhflag;//隐藏动画
+					me.msgcomment ="";
+					if(res.code == 200){
+						
+					}else{
+						uni.showToast({
+							title: res.msg,
+							icon:'none',
+							mask:true
+						});
+					}
+				});  
 				
 				this.$refs.messagepop.close();
 			},
 			collectinfo(){
-				uni.showToast({
-					title: '收藏成功',
-					icon:'none'
+				var me = this;
+				var msgid=  me.tcinfo.id;
+				var userid = me.userid;
+				
+				me.webhttp({
+					url:me.websiteUrl + 'savemelikeinfo',
+					method:'POST',
+					data:{
+						msgid:msgid,userid:userid	
+					}
+				}).then(res=>{
+					if(res.code == 200){
+						uni.showToast({
+							title: '收藏成功',
+							icon:'none'
+						});
+					}else{
+						uni.showToast({
+							title: res.msg,
+							icon:'none',
+							mask:true
+						});
+					} 	
 				});
 				this.dhflag=!this.dhflag;//隐藏动画
 			},
 			gotoreport(){
+				
+				var me = this;
+				var msgid = me.tcinfo.id;
+				
 				uni.navigateTo({
-					url:'../../pages/report/report'
+					url:'../../pages/report/report?msgid='+msgid
 				})	 
 			},
 			/* 时间格式化 */
