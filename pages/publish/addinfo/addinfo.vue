@@ -895,7 +895,11 @@ export default {
 			if(me.ptypename == "ershoujiaoyi"){
 				tcinfo.ershoujiaoyitype =  me.ershoujiaoyitype; 
 			}
-			
+			if(me.isfree == 0){
+				tcinfo.status = 3;
+			}else{
+				tcinfo.status = 1;
+			}
 			
 			console.log(tcinfo);
 			
@@ -907,9 +911,29 @@ export default {
 			}).then(res=>{
 				 
 				if(res.code == 200){
-					uni.redirectTo({
+					//收费需要构建购买对象跳转到buy页面	
+					var msgid = res.msgid;
+					var money = me.categoryinfo.needmoney;
+					if(!money) money = 1;
+					if(me.isfree == 0){
+						
+						var buy={
+							orderno:'',
+							tcuserid :me.userid,
+							msgid:msgid,
+							buyname:'发布付费消息',
+							remark:'发布付费消息',
+							money:money
+						};
+						//算了  放入缓存吧. 这边放 那边取
+						
+						uni.setStorageSync('')
+					}
+					
+					
+					/* uni.redirectTo({
 						url: '../toppage/toppage?msgid='+res.msgid
-					});
+					}); */
 				}else{
 					uni.showToast({
 						icon:'none',

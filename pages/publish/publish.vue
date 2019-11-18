@@ -80,6 +80,27 @@
 		onLoad() {
 			var me = this;
 			me.gettwocategory();
+			
+			var user = me.getGlobalTCUser();
+			if(user==null || user==''||user == undefined){
+				setTimeout(()=>{
+					//弹窗提醒用户未登录
+					uni.showModal({
+						showCancel:false,
+						title:'系统检测到您未登录,发布消息需进行微信授权.',
+						content:'确认授权吗?',
+						confirmText:'确定',
+						success(res) {
+							if(res.confirm){
+								// #ifdef H5
+								window.location.href= '';
+								// #endif
+							}
+						}
+					})
+				},1000);
+			}
+			
 		},
 		methods: {
 			openclzsel(id){
@@ -117,7 +138,6 @@
 					method: 'GET',
 					data: {pid:pid},
 				}).then(res=>{
-					console.log(res);
 					if(res.code == 200 ){
 						if(res.list!=""&&res.list.length>6){
 							me.bleiarry = res.list;
