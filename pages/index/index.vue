@@ -132,24 +132,29 @@
 		onLoad(e) {
 			var me = this;
 			/* 上线时候再管着个 */
-			/* var code= e.code;
-			me.webhttp({
-				url:me.websiteUrl + 'getwxtoken',
-				method:'GET',
-				data:{
-					code	
-				}
-			}).then(res=>{
-				if(res.code == 200){
+			var code= e.code;
+			if(code){ //第一次点击微信授权 code有值并且有效 正确之后保存并返回用户的信息,之后刷新与它无关
+				me.webhttp({
+					url:me.websiteUrl + 'getwxtoken',
+					method:'GET',
+					data:{
+						code	
+					}
+				}).then(res=>{
 					console.log(res);
-				}else{
-					uni.showToast({
-						title: res.msg,
-						icon:'none',
-						mask:true
-					});
-				}	
-			}); */
+					if(res.code == 200){
+						var ruser = res.userobj;
+						uni.setStorageSync('tcuser',ruser);
+					}/* else{
+						uni.showToast({
+							title: res.msg,
+							icon:'none',
+							mask:true
+						});
+					}	 */
+				}); 
+			}
+			
 			
 			me.gettwocategory();
 			me.buildqmapAndQuery(me.page);
@@ -194,7 +199,7 @@
 				//  console.log(e);
 			},
 			onCancel(e) {
-				 console.log(e);
+				// console.log(e);
 			},
 			//返回到页面顶部
 			goTop(){
@@ -218,7 +223,7 @@
 				me.$set(me.qmap,'msgptypename',me.fenlei);
 				me.$set(me.qmap,'orderkeyword',me.paixu);
 				me.$set(me.qmap,'searchword',me.searchword);
-				console.info(me.qmap);
+				//console.info(me.qmap);
 				me.gettcinfolist(me.qmap);
 			},
 			/* 同城分类界面 */
@@ -236,7 +241,7 @@
 					method: 'GET',
 					data: {},
 				}).then(res=>{
-					console.info(res);
+					//console.info(res);
 					if(res.code == 200 ){
 						me.classifyarry = res.list;
 					}
@@ -251,7 +256,7 @@
 					data:qmap,
 					showloading:true
 				}).then(res=>{
-					console.log(res);
+					//console.log(res);
 					if(res.code == 200){
 						me.totalpage = res.totalpages;
 						me.page = me.page+1;

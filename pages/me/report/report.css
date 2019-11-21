@@ -1,0 +1,39 @@
+>>> .optbtn{
+	display: inline-block;
+	background: #FFFFFF;
+	color: #000000;
+	margin-left: 5px;
+	margin-right: 5px;
+	font-size: 14px;
+	border: 1px solid #ffa347;
+}
+
+/* 举报原因弹出层 */
+.reportwrap{
+	flex-direction: column;
+	width: 500upx;
+	background-color: #fff;
+	border-radius: 10px;
+	display: flex;
+	padding: 10upx 0upx;
+	font-size: 14px;
+}
+.scroll-Y{
+	height: 170px;
+}
+.inline-view{
+	display: inline-block;
+	margin-right: 5px;
+	color: #000000;
+}
+.body-text{
+	padding: 20upx;
+	margin-bottom: 5px;
+	color: #F0AD4E;
+	border-bottom: 1px solid #C0C0C0;
+}
+.rptbtn{
+	width: 60%;
+	font-size: 14px;
+	margin: 5px auto;
+}

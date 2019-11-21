@@ -8,9 +8,9 @@
 			</view>
 			<!-- 按钮 -->
 			<view class="btnwrap">
-				<button class="btn">管理信息</button>
-				<button class="btn">查看信息</button>
-				<button class="btn">再发一条</button>
+				<button class="btn" @tap="gotomyinfo">管理信息</button>
+				<button class="btn" @tap="gotodetail">查看信息</button>
+				<button class="btn"  @tap="gotopublish">再发一条</button>
 			</view>
 			<!-- 置顶信息 -->
 			<view class="topinfo">
@@ -34,7 +34,7 @@
 			</view>
 			<!-- 购买按钮 -->
 			<view class="">
-				<button class="buybtn">确认购买</button>
+				<button class="buybtn" @tap="gotobuy">确认购买</button>
 			</view>
 		</view>	
 	</view>
@@ -46,24 +46,108 @@
 			return {
 				items: [{ value: '5',  name: '置顶1天5块'  },
 				        { value: '30',  name: '置顶7天30块'  },       
-				        { value: '60',  name: '置顶15天60块'  },
-					    { value: '120',  name: '置顶30天120块', checked: 'true'  } 
+				        { value: '60',  name: '置顶15天60块'   },
+					    { value: '120',  name: '置顶30天120块'  } 
 				       ],
-				current: 3,
+				current: 1,
+				userobj:{},
+				msgid:'',
 			}
 		},
 		onLoad(e) {
-			console.log(e);
+			var me = this;
+			me.msgid = e.msgid;
+			
+			var user =me.getGlobalTCUser();
+			if(user==null || user==''||user == undefined){
+				setTimeout(()=>{
+					//弹窗提醒用户未登录
+					uni.showModal({
+						showCancel:false,
+						title:'系统检测到您未登录,发布消息需进行微信授权.',
+						content:'确认授权吗?',
+						confirmText:'确定',
+						success(res) {
+							if(res.confirm){
+								// #ifdef H5
+								window.location.href= 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx767a50ba17367aa1&redirect_uri=https%3A%2F%2Fyohaoyun.com%2Ftch5%2F&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+								// #endif
+							}
+						}
+					})
+				},1000);
+			}
+			me.userobj = user;
 		},
 		methods: {
-			/* 单选框改变时间 */
+			
+			/* 前往支付页 */
+			gotobuy(){
+				var me=this;
+				uni.showLoading({
+					mask:true,
+					title:'创建订单中...'
+				});
+				setTimeout(()=>{
+					me.createbuyorder();
+					uni.hideLoading();
+				},2000);
+			},
+			/* 创建置顶订单 */
+			createbuyorder(){
+				var me = this;
+				var money = me.items[me.current].value;
+				var topdays =0 ;
+				if(me.current == 0)topdays=1;
+				if(me.current == 1)topdays=7;
+				if(me.current == 2)topdays=15;
+				if(me.current == 3)topdays=30;
+				
+				var buy={
+					orderno:'',
+					tcuserid :me.userobj.id,
+					msgid:me.msgid,
+					buyname:'置顶消息',
+					remark:'置顶消息',
+					money:money,
+					type:'gototop',
+					topdays:topdays
+				};
+				//放入缓存. 这边放 那边取
+				uni.removeStorageSync('buybean');
+				uni.setStorageSync('buybean',buy);
+				uni.redirectTo({
+					url: '/pages/buy/buy'
+				});
+			},
+			/* 单选框改变事件 */
 			radioChange: function(evt) {
-			            for (let i = 0; i < this.items.length; i++) {
-			                if (this.items[i].value === evt.target.value) {
-			                    this.current = i;
-			                    break;
-			                }
-			            }
+				console.log(evt);
+				for (let i = 0; i < this.items.length; i++) {
+					if (this.items[i].value === evt.target.value) {
+						this.current = i;
+						break;
+					}
+				}
+			},
+			/* 前往信息管理界面 */
+			gotomyinfo(){
+				uni.redirectTo({
+					url: '/pages/me/minetcinfo/minetcinfo'
+				});
+			},
+			/* 再发一条页面 */
+			gotopublish(){
+				uni.redirectTo({
+					url:'/page/publish/publish'
+				});
+			},
+			/* 前往查看信息界面 */
+			gotodetail(){
+				//查看详情 点返回可以继续置顶操作
+				uni.navigateTo({
+					url:'/pages/detail/detail?msgid='+me.msgid
+				})
 			}
 		}
 	}

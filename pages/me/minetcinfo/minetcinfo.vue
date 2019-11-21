@@ -71,14 +71,13 @@
 				
 				var me  = this;
 				me.webhttp({
-					url:me.websiteUrl + "getsimpletcinfolist",
+					url:me.websiteUrl + "getminecinfolist",
 					method:'POST',
 					data:{
 						page:page,
 						status:status,
 						userid:me.userobj.id,
-						pagesize:pagesize,
-						userid:me.userobj.id
+						pagesize:pagesize
 					},
 					showloading:true
 				}).then(res=>{

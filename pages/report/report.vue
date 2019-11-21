@@ -89,7 +89,7 @@
 					if(res.code == 200){
 						uni.showToast({
 							title: "感谢您的反馈",
-							icon:'none',
+							icon:'loading',
 							mask:true,
 							duration:5000
 						});
@@ -98,8 +98,8 @@
 							uni.switchTab({
 								url:'/pages/index/index'
 							});
-						},3000);
-						console.info("3秒后进行跳转");
+						},2000);
+					
 						
 						
 					}else{

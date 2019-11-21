@@ -1,0 +1,9 @@
+>>> .optbtn{
+	display: inline-block;
+	background: #FFFFFF;
+	color: #000000;
+	margin-left: 5px;
+	margin-right: 5px;
+	font-size: 14px;
+	border: 1px solid #ffa347;
+}

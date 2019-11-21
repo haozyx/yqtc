@@ -62,6 +62,19 @@
 				
 			</view>
 			<view class="line-wrap"> <view class="line"></view> </view>
+			
+			<view class="textwrap" @tap="gotoreport" v-if="userobj.id == 3">
+				<view class="leftwrap">
+					<image class="leftimg" src="../../static/img/me/jubao.png"></image>
+					<view class="lefttext">举报管理</view>
+				</view>
+				<view class="rightwrap">
+					<view class="righttext">点击查看</view>
+					<image src="../../static/img/you.png" class="you"></image>
+				</view>
+				
+			</view>
+			<view class="line-wrap"> <view class="line"></view> </view>
 		</view>
 		
 		
@@ -83,6 +96,23 @@
 			var user = me.getGlobalTCUser();
 			if(user){
 				me.userobj = user;
+			}else{
+				setTimeout(()=>{
+					//弹窗提醒用户未登录
+					uni.showModal({
+						showCancel:false,
+						title:'系统检测到您未登录,如需操作请进行微信授权.',
+						content:'确认授权吗?',
+						confirmText:'确定',
+						success(res) {
+							if(res.confirm){
+								// #ifdef H5
+								window.location.href= 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx767a50ba17367aa1&redirect_uri=https%3A%2F%2Fyohaoyun.com%2Ftch5%2F&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+								// #endif
+							}
+						}
+					})
+				},1000);
 			}
 		},
 		methods: {
@@ -94,6 +124,11 @@
 			gotoshoucang(){
 				uni.navigateTo({
 					url:'/pages/me/shoucang/shoucang'
+				})
+			},
+			gotoreport(){
+				uni.navigateTo({
+					url:'/pages/me/report/report'
 				})
 			},
 			/* 前往我的私信界面 */

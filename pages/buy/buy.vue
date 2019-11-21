@@ -4,21 +4,21 @@
 			<view class="title">支付中心</view>
 			<view class="textitem">
 				<view class="lefttext">商品名称</view>
-				<view class="righttext">刷新信息</view>
+				<view class="righttext">{{buyobj.buyname}}</view>
 			</view>
 			<view class="textitem">
 				<view class="lefttext">备注信息</view>
-				<view class="righttext">刷新信息</view>
+				<view class="righttext">{{buyobj.remark}}</view>
 			</view>
 			<view class="textitem">
 				<view class="lefttext">支付倒计时</view>
-				<view class="righttext redtext">0分0秒</view>
+				<view class="righttext redtext">{{timetext}}</view>
 			</view>
 			<view class="textitem">
 				<view class="lefttext">支付金额</view>
-				<view class="righttext redtext">￥5元</view>
+				<view class="righttext redtext">￥{{buyobj.money}}元</view>
 			</view>
-			
+
 			<view>
 				<button type="primary" @tap="gotobuy" class="btn">立即支付</button>
 			</view>
@@ -30,7 +30,12 @@
 	export default {
 		data() {
 			return {
-				userobj:{},
+				userobj: {},
+				buyobj: {},
+				oneclick:false,
+				maxtime: 300,
+				timetext:'5分0秒',
+				timer:0,
 				appId: '',
 				timeStamp: '',
 				nonceStr: '',
@@ -42,44 +47,66 @@
 		onLoad() {
 			var me = this;
 			var user = me.getGlobalTCUser();
-			if(user){
+			me.timer= setInterval(function () {
+				var maxtime = me.maxtime;
+				if(maxtime>=0){
+					let minutes = Math.floor(maxtime / 60);
+					let seconds = Math.floor(maxtime % 60);
+					--me.maxtime;
+					me.timetext = minutes + "分" + seconds + "秒";
+				}else{
+					clearInterval(me.timer);
+				}
+				//console.info("1");
+			},1000);
+			if (user) {
 				me.userobj = user;
-				console.log(me.userobj);
+				var orderno = me.tradeNo();
+				var buybean = uni.getStorageSync('buybean');
+
+				if (buybean == '' || buybean == null || buybean == undefined) {
+					uni.showToast({
+						icon: 'none',
+						title: '创建订单失败',
+						mask: true
+					})
+					return;
+				} else {
+					buybean.orderno = orderno;
+					me.buyobj = buybean;
+				}
+
 			}
+
+			console.log(buybean);
 		},
 		methods: {
 			//前往支付
-			gotobuy(){
-				var me=this;
-				var orderno = me.tradeNo();
-				var buy = {
-					orderno:orderno,
-					tcuserid: me.userobj.id,
-					buyname: '刷新消息',
-					msgid:12,
-					remark: '刷新消息',
-					money: 0.01
-				};
-				
+			gotobuy() {
+				var me = this;
+				//避免用户重复下单
+				if(this.oneclick) return;
+				this.oneclick = true;
+				setTimeout(()=>{ this.oneclick = false; },15000);
 				me.webhttp({
-					url:me.websiteUrl + 'prepay',
-					method:'POST',
-					data:buy
-				}).then(res=>{
-					if(res.code == 200){
+					url: me.websiteUrl + 'prepay',
+					method: 'POST',
+					data: me.buyobj
+				}).then(res => {
+					if (res.code == 200) {
 						me.buybuy(res.paymap)
-					}else{
+					} else {
 						uni.showToast({
 							title: res.msg,
-							icon:'none',
-							mask:true
+							icon: 'none',
+							mask: true
 						});
-					}	
+					}
 				});
-				
+
 			},
-			buybuy(wp){
-				var me =this;
+			buybuy(wp) {
+				var me = this;
 				me.appId = wp.appId;
 				me.timeStamp = wp.timeStamp;
 				me.nonceStr = wp.nonceStr;
@@ -101,8 +128,7 @@
 			onBridgeReady() {
 				var me = this;
 				WeixinJSBridge.invoke(
-					'getBrandWCPayRequest',
-					{
+					'getBrandWCPayRequest', {
 						appId: me.appId, //公众号名称,由商户传入
 						timeStamp: me.timeStamp, //时间戳,自1970年以来的秒数
 						nonceStr: me.nonceStr, //随机串
@@ -115,7 +141,7 @@
 							// console.log('支付成功');
 							//支付成功后跳转的页面
 							uni.reLaunch({
-								url:'/pages/index/index'
+								url: '/pages/index/index'
 							})
 						} else if (res.err_msg == 'get_brand_wcpay_request:cancel') {
 							console.log('支付取消');
@@ -145,8 +171,8 @@
 					yyyyMMddHHmmss +
 					'_' +
 					Math.random()
-						.toString(36)
-						.substr(2, 9)
+					.toString(36)
+					.substr(2, 9)
 				);
 			}
 		}
@@ -154,5 +180,5 @@
 </script>
 
 <style>
-@import url("buy.css");
+	@import url("buy.css");
 </style>

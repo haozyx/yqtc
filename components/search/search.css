@@ -1,0 +1,34 @@
+/* 顶部搜索开始 */
+.head{
+	width: 100%;
+	height: 75px;
+	background-color: #52A9EC;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.headwrap{
+	height: 35px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	background-color: #FFFFFF;
+	width: 80%;
+	padding: 0 10px;
+	border-radius: 20px;
+	align-items: center;
+}
+.searchimg{
+	width: 28px;
+	height: 28px;
+ 
+}
+.textstyle{
+	font-size: 18px;
+}
+.searchtext{
+	width: 100%;
+	height: 30px;
+}
+/* 顶部搜索结束 */

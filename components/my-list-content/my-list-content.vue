@@ -108,14 +108,15 @@
 						<view class="msgcontent">{{tc.msgcontent}}</view>
 						<view class="content-phone">{{tc.contactphone}}</view>
 					
-						<view class="callphone">
+						<!-- 自己就别给自己打电话发信息了 -->
+						<!-- <view class="callphone">
 							<fa-icon color="#FFFFFF" size="15" class="fa-phone"></fa-icon>
 							<view class="inlineblock">拨打电话</view>
 						</view>
 						<view class="sendmsg" @tap="gotochat(tc.tcuserid)">
 							<fa-icon color="#000000" size="15" class="fa-envelope-o "></fa-icon>
 							<view class="inlineblock">发送私信</view>
-						</view>
+						</view> -->
 					</view>
 					<!-- 显示全文-->
 					<view class="disall" @tap="disorhide(index)">{{clickarry.indexOf(index) != -1? '隐藏' : '显示全文'}}</view>
@@ -148,11 +149,11 @@
 				</view>
 				</view>
 			<view class="bottombtnwrap"  >
-				<button type="default" v-if="tc.status == '1'"   class="optbtn">刷新</button>
-				<button type="default" v-if="tc.status == '1'"     class="optbtn">置顶</button>
-				<button type="default"  v-if="tc.status == '3'" @tap="gotobuy"   class="optbtn">支付</button>
-				<button type="default"  v-if="tc.status == '1'" class="optbtn">下架</button>
-				<button type="default"  v-if="tc.status == '0'" class="optbtn">上架</button>
+				<button type="default" v-if="tc.status == '1'" @tap="refreshdata(tc)"  class="optbtn">刷新</button>
+				<button type="default" v-if="tc.status == '1'"  @tap="gototop(tc.id)" class="optbtn">置顶</button>
+				<button type="default"  v-if="tc.status == '3'" @tap="gotobuy(tc)"   class="optbtn">支付</button>
+				<button type="default"  v-if="tc.status == '1'" @tap="undercarrige(index,tc.id,0)" class="optbtn">下架</button>
+				<button type="default"  v-if="tc.status == '0'" @tap="undercarrige(index,tc.id,1)" class="optbtn">上架</button>
 			</view>
 		</view>
 		
@@ -269,10 +270,26 @@ export default {
 			this.$emit('btnclick',{btntext:btntext,msgid:msgid,arryindex:index});	
 		},
 		/* 前往支付页面 */
-		gotobuy(){
-			uni.navigateTo({
-				url:'/pages/buy/buy'
-			})
+		gotobuy(tc){
+			
+			var buy={
+				orderno:'',
+				tcuserid :tc.tcuserid,
+				msgid:tc.id,
+				buyname:'发布付费消息',
+				remark:'发布付费消息',
+				money:0.01,
+				type:'publish',
+				topdays:0
+			};
+			//放入缓存. 这边放 那边取
+			uni.removeStorageSync('buybean');
+			uni.setStorageSync('buybean',buy);
+			//页面跳转
+			uni.redirectTo({
+				url: '/pages/buy/buy'
+			});
+			
 		},
 		/* 前往发送消息界面 */
 		gotochat(tcuserid){
@@ -291,6 +308,73 @@ export default {
 			uni.navigateTo({
 				url:'/pages/imchat/imchat?tcuserid='+tcuserid
 			})
+		},
+		/* 置顶消息 */
+		gototop(msgid){
+			uni.navigateTo({
+				url:'/pages/publish/toppage/toppage?msgid='+msgid
+			})
+		},
+		/* 下架消息 */
+		undercarrige(index,msgid,type){
+			var me = this;
+			me.webhttp({
+				url:me.websiteUrl + 'undercarrige',
+				method:'GET',
+				data:{
+					msgid:msgid,
+					type:type	
+				}
+			}).then(res=>{
+				if(res.code == 200){
+					uni.showToast({
+						title: '操作成功',
+						icon:'none',
+						mask:true
+					});
+					me.tcinfolist.splice(index,1);
+				}else{
+					uni.showToast({
+						title: res.msg,
+						icon:'none',
+						mask:true
+					});
+				}	
+			});
+		},
+			
+		/* 刷新消息 */	
+		refreshdata(tc){
+			
+			uni.showModal({
+				confirmText:'确定',
+				title:'本次刷新消息2元,确定刷新吗?',
+				content:'刷新后消息首页展示.',
+				success(res) {
+					if(res.confirm){
+						
+						var msgid = tc.id;
+						var userid = tc.tcuserid;
+						var buy={
+							orderno:'',
+							tcuserid :userid,
+							msgid:msgid,
+							buyname:'刷新消息',
+							remark:'刷新消息',
+							money:2,
+							type:'refresh',
+							topdays:0
+						};
+						//放入缓存. 这边放 那边取
+						uni.removeStorageSync('buybean');
+						uni.setStorageSync('buybean',buy);
+						uni.redirectTo({
+							url: '/pages/buy/buy'
+						});
+					}
+				}
+			})
+			
 		}	
 	}
 };

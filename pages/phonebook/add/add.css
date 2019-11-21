@@ -1,0 +1,51 @@
+.textwrap{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	font-size: 16px;
+	height: 60px;
+	padding: 0 30upx;
+	align-items: center;
+	border-bottom: #F1F1F1 1px solid;
+}
+.text{
+	margin-right: 10px;
+	flex-shrink: 0;
+}
+.inputext{
+	width: 80%;
+}
+.jilian{
+	color: #808080;
+	width: 100%;
+}
+
+.changcolor{
+ color: #000000 !important;
+}
+/* 底部的按钮 */	
+.bottom{
+	margin-top: 40px;
+	width: 100%;
+}
+.button{
+	color: #FFFFFF;
+	width: 40%;
+	background: #1DA8FE;
+}
+.hint-text{
+	font-size: 18px;
+	color: orangered;
+	padding: 20upx;
+}
+
+.title{
+	background-color: #F7F7F7;
+	color: #000000;
+	font-size: 20px;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	border-top: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
+}

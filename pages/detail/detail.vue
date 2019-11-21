@@ -114,7 +114,7 @@
 					
 						<view class="callphone">
 							<fa-icon color="#FFFFFF" size="15" class="fa-phone"></fa-icon>
-							<view class="inlineblock">拨打电话</view>
+							<view class="inlineblock" @tap="opencall(tcbean.contactphone)">拨打电话</view>
 						</view>
 						<view class="sendmsg" @tap="gotochat(tcbean.tcuserid)">
 							<fa-icon color="#000000" size="15" class="fa-envelope-o "></fa-icon>
@@ -210,6 +210,12 @@
 				uni.navigateTo({
 					url:'/pages/imchat/imchat?tcuserid='+tcuserid
 				})
+			},
+			/* 拨打电话 */
+			opencall(phonenum){
+				uni.makePhoneCall({
+					phoneNumber: phonenum //仅为示例
+				});
 			},	
 			/* 获取消息详情 */
 			getmsginfodetail(msgid){
@@ -232,7 +238,7 @@
 							mask:true
 						});
 					}
-						console.log(me.tcbean);
+					//	console.log(me.tcbean);
 				});
 				
 			}

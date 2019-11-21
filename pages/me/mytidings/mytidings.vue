@@ -51,7 +51,7 @@
 						tcuserid : me.userobj.id	
 					}
 				}).then(res=>{
-					console.info(res);
+					// console.info(res);
 					if(res.code == 200){
 						me.msglist = res.msglist;
 					}else{

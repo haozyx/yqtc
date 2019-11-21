@@ -1,0 +1,50 @@
+/* 没有数据  开始 */
+.nodata{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 400upx;
+}
+.bigtext{
+	font-size: 20px;
+}
+.smalltext{
+	font-size: 14px;
+	margin: 20upx auto;
+}
+.nodataimg{
+	width: 100px;
+	height: 100px;
+}
+/* 没数据结束 */
+
+/* 右下角的加号 */
+.add{
+	position: fixed;
+	right: 40upx;
+	bottom: 100upx;
+}
+.addimg{
+	width: 50px;
+	height: 50px;
+}
+/* 加号结束 */
+.righttext{
+	font-size: 14px;
+	padding: 0 30upx;
+	width: 100%;
+	height: 100upx;
+	line-height: 100upx;
+	border-bottom: #F8F8F8 1px solid;
+	/* border-bottom: red 1px solid; */
+}
+.first-str{
+	font-size: 14px;
+	padding: 0 30upx;
+	width: 100%;
+	height: 50upx;
+	line-height: 50upx;
+	background: #F1F1F1;
+	margin-top: 2px;
+}

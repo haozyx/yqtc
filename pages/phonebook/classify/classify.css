@@ -1,0 +1,123 @@
+.page-fill{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: #F7F7F7;
+}
+/* 中间分为左右两侧 */
+	
+.body{
+	display: flex;
+	flex-direction: row;
+	
+}
+.left{
+	width: 28%;
+
+	background-color: #F1F1F1;
+	border-right: #F7F7F7 1px solid;
+	/* position: absolute; */
+}
+
+.bac-white{
+	background-color: #FFFFFF !important;
+}
+
+.leftTitle{
+	font-size: 16px;
+	height: 100upx;
+	line-height: 100upx;
+	text-align: center;
+	color: #4BB5F4;
+	font-weight: bold;
+	background: #F8F8F8;
+}
+.lefttext{
+	font-size: 14px;
+	height: 100upx;
+	line-height: 100upx;
+	text-align: center;
+}
+
+.color-grey{
+	background-color:#F8F8F8;
+}
+.color-white{
+	background-color: #FFFFFF;
+}
+
+.selectcolor{
+	color: #FFFFFF !important;
+	background-color: #4BB5F4 !important;
+}
+
+/* 右侧字体开始 */
+.right{
+	width: 71%;
+}
+.righttext{
+	font-size: 14px;
+	padding: 0 30upx;
+	width: 100%;
+	height: 100upx;
+	line-height: 100upx;
+	border-bottom: #F8F8F8 1px solid;
+	background-color: #FFFFFF;
+	/* border-bottom: red 1px solid; */
+}
+.first-str{
+	font-size: 14px;
+	padding: 0 30upx;
+	width: 100%;
+	height: 50upx;
+	line-height: 50upx;
+	background: #F1F1F1;
+	margin-top: 2px;
+}
+.right-scroll{
+	min-height: 900upx;
+	overflow: hidden;
+}
+
+/* 右下角的加号 */
+.add{
+	position: fixed;
+	right: 40upx;
+	bottom: 100upx;
+}
+.addimg{
+	width: 50px;
+	height: 50px;
+}
+
+/* 没有数据的样式 */
+.nodata{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 400upx;
+}
+.bigtext{
+	font-size: 20px;
+}
+.smalltext{
+	font-size: 14px;
+	margin: 20upx auto;
+}
+.nodataimg{
+	width: 100px;
+	height: 100px;
+}
+
+/* 左上角的返回 */
+/* 右下角的加号 */
+.zuo{
+	position: fixed;
+	left: 2upx;
+	top: 44upx;
+}
+.zuoimg{
+	width: 25px;
+	height: 25px;
+}

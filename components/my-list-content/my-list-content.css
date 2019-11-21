@@ -104,12 +104,12 @@
 .contentbody{
 	font-size: 14px;
 	margin-top: 10px;
-	height: 180upx;
+	height: 100upx;
 	overflow: hidden;
 }
 .contentbody.active{
 	height: auto;
-	min-height: 100px;
+	min-height: 50px;
 }
 .msgcontent{
 	padding: 0 10upx 0 0;

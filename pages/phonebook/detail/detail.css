@@ -1,0 +1,29 @@
+	
+.title{
+	background: #F1F1F1;
+	font-size: 24px;
+	line-height: 120px;
+	height: 120px;
+	text-align: center;
+}
+
+.textwrap{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	font-size: 14px;
+	height: 60px;
+	padding: 0 30upx;
+	align-items: center;
+	background-color: #FFFFFF;
+}
+
+.you{
+	width: 15px;
+	height: 15px;
+}
+.carousel{
+	margin-top: 5px;
+	width: 100%;
+	height: 193upx;
+}

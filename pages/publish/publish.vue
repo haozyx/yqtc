@@ -93,7 +93,7 @@
 						success(res) {
 							if(res.confirm){
 								// #ifdef H5
-								window.location.href= '';
+								window.location.href= 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx767a50ba17367aa1&redirect_uri=https%3A%2F%2Fyohaoyun.com%2Ftch5%2F&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
 								// #endif
 							}
 						}

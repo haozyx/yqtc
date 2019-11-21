@@ -18,10 +18,11 @@
 	height: 25px;
 }
 .lefttext{
-	margin-left: 5px;
+	margin-left: 2px;
 	height: 25px;
 	line-height: 25px;
-	width: 130upx;
+	width: 134upx;
+	flex-shrink:0;
 	text-align: right;
 }
 .rightwrap{

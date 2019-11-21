@@ -6,15 +6,15 @@
 		}
 	    ,{
             "path" : "pages/detail/detail",
-            "style" : {}
+            "style" : {"titleNView":false}
         }
         ,{
             "path" : "pages/tcclassify/tcclassify",
-            "style" : {}
+            "style" : {"titleNView":false}
         }
         ,{
             "path" : "pages/perinfos/perinfos",
-            "style" : {}
+            "style" : {"titleNView":false}
         },{
             "path" : "pages/changepage/changepage",
             "style" : {"titleNView":false}
@@ -33,23 +33,23 @@
 		}
         ,{
             "path" : "pages/publish/addinfo/addinfo",
-            "style" : {}
+            "style" : {"titleNView":false}
         }
         ,{
             "path" : "pages/clause/clause",
-            "style" : {}
+           "style" : {"titleNView":false}
         }
         ,{
             "path" : "pages/publish/toppage/toppage",
-            "style" : {}
+            "style" : {"titleNView":false}
         }
         ,{
             "path" : "pages/me/updateme/updateme",
-            "style" : {}
+           "style" : {"titleNView":false}
         }
         ,{
             "path" : "pages/me/minetcinfo/minetcinfo",
-            "style" : {}
+           "style" : {"titleNView":false}
         }
         ,{
             "path" : "pages/report/report",
@@ -71,10 +71,30 @@
             "path" : "pages/buy/buy",
             "style" : {"titleNView":false}
         }
+        ,{
+            "path" : "pages/me/report/report",
+           "style" : {"titleNView":false}
+        }
+        ,{
+            "path" : "pages/phonebook/classify/classify",
+            "style" : {"titleNView":false}
+        }
+        ,{
+            "path" : "pages/phonebook/detail/detail",
+            "style" : {"titleNView":false}
+        }
+        ,{
+            "path" : "pages/phonebook/search/search",
+           "style" : {"titleNView":false}
+        }
+        ,{
+            "path" : "pages/phonebook/add/add",
+           "style" : {"titleNView":false}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "微垣曲",
+		"navigationBarTitleText": "垣曲大小事",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},

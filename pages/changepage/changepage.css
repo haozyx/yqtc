@@ -1,0 +1,6 @@
+.body-wrap{
+	display: flex;
+	flex-direction: row;
+	padding: 40upx;
+	font-size: 20px;
+}

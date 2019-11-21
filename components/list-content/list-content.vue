@@ -110,7 +110,7 @@
 					
 						<view class="callphone">
 							<fa-icon color="#FFFFFF" size="15" class="fa-phone"></fa-icon>
-							<view class="inlineblock">拨打电话</view>
+							<view class="inlineblock" @tap="opencall(tc.contactphone)">拨打电话</view>
 						</view>
 						<view class="sendmsg" @tap="gotochat(tc.tcuserid)">
 							<fa-icon color="#000000" size="15" class="fa-envelope-o "></fa-icon>
@@ -283,7 +283,13 @@ export default {
 			uni.navigateTo({
 				url:'/pages/imchat/imchat?tcuserid='+tcuserid
 			})
-		}	
+		},
+		/* 拨打电话 */
+		opencall(phonenum){
+			uni.makePhoneCall({
+			    phoneNumber: phonenum //仅为示例
+			});
+		},	
 	}
 };
 </script>

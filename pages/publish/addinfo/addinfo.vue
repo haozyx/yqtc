@@ -33,7 +33,7 @@
 			<view class="line-wrap"><view class="line"></view></view>
 		</block>
 		<view class="textwrap">
-			<view class="leftwrap"><view class="lefttext">乘车人数 :</view></view>
+			<view class="leftwrap"><view class="lefttext">乘车人数:</view></view>
 			<view class="rightwrap">
 				<view class="righttext" @tap="showccPicker">{{ chengcherenshu }}</view>
 				<fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon>
@@ -260,7 +260,7 @@
 		<view class="textwrap">
 			<view class="leftwrap">
 				<view class="lefttext">电话 :</view>
-				<input class="input" type="number" v-model="contactphone" placeholder="请输入联系电话" />
+				<input class="input" type="number" maxlength="11" v-model="contactphone" placeholder="请输入联系电话" />
 			</view>
 			<view class="rightwrap"><fa-icon class="fa-angle-right" color="#C9C8CD" size="20"></fa-icon></view>
 		</view>
@@ -518,7 +518,23 @@ export default {
 			me.getguid();
 			me.userobj = user;
 			me.userid = user.id;
-			
+		}else{
+			setTimeout(()=>{
+				//弹窗提醒用户未登录
+				uni.showModal({
+					showCancel:false,
+					title:'系统检测到您未登录,发布消息需进行微信授权.',
+					content:'确认授权吗?',
+					confirmText:'确定',
+					success(res) {
+						if(res.confirm){
+							// #ifdef H5
+							window.location.href= 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx767a50ba17367aa1&redirect_uri=https%3A%2F%2Fyohaoyun.com%2Ftch5%2F&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+							// #endif
+						}
+					}
+				})
+			},1000);
 		}
 		
 	},
@@ -913,27 +929,34 @@ export default {
 				if(res.code == 200){
 					//收费需要构建购买对象跳转到buy页面	
 					var msgid = res.msgid;
-					var money = me.categoryinfo.needmoney;
-					if(!money) money = 1;
+					
 					if(me.isfree == 0){
-						
+						var money = me.categoryinfo.needmoney;
+						if(!money) money = 1;
 						var buy={
 							orderno:'',
 							tcuserid :me.userid,
 							msgid:msgid,
 							buyname:'发布付费消息',
 							remark:'发布付费消息',
-							money:money
+							/* money:money,*/
+							money:money,  
+							type:'publish',
+							topdays:0
 						};
-						//算了  放入缓存吧. 这边放 那边取
-						
-						uni.setStorageSync('')
+						//放入缓存. 这边放 那边取
+						uni.removeStorageSync('buybean');
+						uni.setStorageSync('buybean',buy);
+						//页面跳转
+						uni.redirectTo({
+							url: '/pages/buy/buy'
+						});
+					}else{
+						//普通发布信息前往置顶页面
+						uni.redirectTo({
+							url: '../toppage/toppage?msgid='+res.msgid
+						});
 					}
-					
-					
-					/* uni.redirectTo({
-						url: '../toppage/toppage?msgid='+res.msgid
-					}); */
 				}else{
 					uni.showToast({
 						icon:'none',
