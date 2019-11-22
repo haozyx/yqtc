@@ -139,11 +139,12 @@
 			/* 再发一条页面 */
 			gotopublish(){
 				uni.redirectTo({
-					url:'/page/publish/publish'
+					url:'../publish'
 				});
 			},
 			/* 前往查看信息界面 */
 			gotodetail(){
+				var me = this;
 				//查看详情 点返回可以继续置顶操作
 				uni.navigateTo({
 					url:'/pages/detail/detail?msgid='+me.msgid

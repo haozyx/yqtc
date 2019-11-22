@@ -571,7 +571,7 @@ export default {
 			this.$refs.ccsjpicker.show();
 		},
 		confirmccrs(e) {
-			console.log(e);
+			// console.log(e);
 			this.chengcherenshu = e.label;
 		},
 		confirmccsj(e) {
@@ -601,10 +601,10 @@ export default {
 			this.cheliangjibie = e.label ;
 		},	
 		onChange(e) {
-			console.log(e);
+			//console.log(e);
 		},
 		onCancel(e) {
-			console.log(e);
+			//console.log(e);
 		},
 		/* 图片上传 */
 		myUpload(rsp) {
@@ -681,7 +681,7 @@ export default {
 			var me = this;
 			/* 必须是整形才能生效 */
 			var index = parseInt(e.currentTarget.dataset.index);
-			console.info(index);
+			//console.info(index);
 			uni.previewImage({
 				urls: me.photoarry,
 				current: index
@@ -731,7 +731,7 @@ export default {
 				method:'GET',
 				data:{id:id}
 			}).then(res=>{
-				console.log(res);
+				//console.log(res);
 				if(res.code == 200){
 					me.categoryinfo = res.cinfo;
 					me.ptypename = res.cinfo.ptypename;
@@ -853,7 +853,7 @@ export default {
 			var me = this;
 			
 			var vinfo = me.valid();
-			console.log(vinfo);
+			//console.log(vinfo);
 			if(vinfo.length>0){
 				uni.showToast({
 					icon:'none',

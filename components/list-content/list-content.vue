@@ -106,7 +106,7 @@
 						
 						<!-- 内容在标签下面 -->
 						<view class="msgcontent">{{tc.msgcontent}}</view>
-						<view class="content-phone">{{tc.contactphone}}</view>
+						<view class="content-phone">{{tc.contactperson}}-{{tc.contactphone}}</view>
 					
 						<view class="callphone">
 							<fa-icon color="#FFFFFF" size="15" class="fa-phone"></fa-icon>

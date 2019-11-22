@@ -106,7 +106,7 @@
 						
 						<!-- 内容在标签下面 -->
 						<view class="msgcontent">{{tc.msgcontent}}</view>
-						<view class="content-phone">{{tc.contactphone}}</view>
+						<view class="content-phone">{{tc.contactperson}}-{{tc.contactphone}}</view>
 					
 						<!-- 自己就别给自己打电话发信息了 -->
 						<!-- <view class="callphone">
@@ -278,7 +278,8 @@ export default {
 				msgid:tc.id,
 				buyname:'发布付费消息',
 				remark:'发布付费消息',
-				money:0.01,
+				/* money:0.01, */
+				money:1,
 				type:'publish',
 				topdays:0
 			};

@@ -37,7 +37,7 @@
 							<!-- 右-用户名称-时间-消息 -->
 							<view class="right">
 								<view class="username">
-									<view class="name">123</view> <view class="time">{{msg.send_time}}</view>
+									<!-- <view class="name">123</view> --> <view class="time">{{msg.send_time}}</view>
 								</view>
 								<!-- 文字消息 -->
 								<view  class="bubble">

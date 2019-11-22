@@ -1,7 +1,7 @@
 <script>
 	export default {
 		onLaunch: function() {
-			//uni.setStorageSync('tcuser',{id:4,nickname:'晴天有雨',sex:1,touxiangimg:'https://img.yohaoyun.com/yohaoyun/tongcheng/touxiang/20191115/file-1573786427123.jpg'});
+			//uni.setStorageSync('tcuser',{id:5,nickname:'啊谢',sex:1,touxiangimg:'https://img.yohaoyun.com/yohaoyun/tongcheng/touxiang/20191115/file-1573786427123.jpg'});
 			//uni.clearStorageSync();
 		},
 		onShow: function() {

@@ -22,7 +22,7 @@
 .msgtext{
 	margin-top: 5px;
 	font-size: 14px;
-	width: 580upx;
+	width: 500upx;
 		/* 添加省略号 */
 	white-space: nowrap;
 	overflow: hidden;
@@ -31,4 +31,12 @@
 .line-wrap{
 	padding: 0;
 }
+.deltext{
+	flex-shrink: 0;
+	font-size: 14px;
+	line-height: 55px;
+	background-image:-webkit-linear-gradient(bottom,red,#fd8403,yellow); 
+	-webkit-background-clip:text; 
+	-webkit-text-fill-color:transparent; 
+}	
  

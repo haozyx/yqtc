@@ -209,8 +209,9 @@
 			},
 			timestampFormat( timestr ) {
 				var me =this;
-				var timestamp = Date.parse(timestr)/1000;
-			
+				if(timestr==undefined) return;
+				var timestamp = Date.parse(timestr.replace('/-/g', '/'))/1000;
+				
 			    var curTimestamp = parseInt(new Date().getTime() / 1000); //当前时间戳
 			    var timestampDiff = curTimestamp - timestamp; // 参数时间戳与当前时间戳相差秒数
 			
