@@ -73,7 +73,7 @@
 		onLoad(){
 			var me = this;
 			var user = me.getGlobalTCUser();
-			console.info(user);
+			//console.info(user);
 			if(user){
 				me.userid = user.id;
 				me.getmeinfo();
@@ -91,6 +91,7 @@
 					method:'GET',
 					data:{
 						id:me.userid
+						/* id:11 */
 					}
 				}).then(res=>{
 					if(res.code==200){
@@ -104,7 +105,7 @@
 				//请求不让多次点击
 				if(this.oneclick) return;
 				this.oneclick = true;
-				setTimeout(()=>{ this.oneclick = false; }, 3000);
+				setTimeout(()=>{ this.oneclick = false; }, 6000);
 				 
 				var userobj1 =me.userobj;
 				
@@ -119,6 +120,22 @@
 							icon:'none',
 							mask:true
 						});
+						setTimeout(()=>{
+							var tcuser = {
+								id:userobj1.id,
+								sex:userobj1.sex,
+								nickname:userobj1.nickname,
+								touxiangimg: userobj1.touxiangimg
+							};
+							uni.setStorageSync('tcuser',tcuser);
+							
+							uni.switchTab({
+								url: '/pages/me/me'
+							});
+							
+						},3000);
+						
+						
 					}else{
 						uni.showToast({
 							title:res.msg,

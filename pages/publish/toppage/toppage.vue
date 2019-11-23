@@ -44,10 +44,10 @@
 	export default {
 		data() {
 			return {
-				items: [{ value: '5',  name: '置顶1天5块'  },
-				        { value: '30',  name: '置顶7天30块'  },       
-				        { value: '60',  name: '置顶15天60块'   },
-					    { value: '120',  name: '置顶30天120块'  } 
+				items: [{ value: '5',  name: '置顶1天5元'  },
+				        { value: '30',  name: '置顶7天30元'  },       
+				        { value: '60',  name: '置顶15天60元'   },
+					    { value: '120',  name: '置顶30天120元'  } 
 				       ],
 				current: 1,
 				userobj:{},

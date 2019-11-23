@@ -186,3 +186,47 @@
 	margin-right: 5px;
 }
 /* 底部的按钮 start */
+/* 分享按钮 start*/
+.back-top{
+	position: fixed;
+	bottom:110px;
+	right: 15px;
+	height: 50px;
+	z-index: 100;
+}
+.back-top image {
+  width: 40px;
+  height: 40px;
+}
+.share-text{
+	font-size: 12px;
+	text-align: center;
+	margin-top: -5px;
+	color: #FF72AC;
+}
+/* 分享按钮 end*/
+
+/* 底部关注 start */
+.ecodewrap{
+	display: flex;
+	flex-direction: row;
+	padding: 20upx;
+	font-size: 18px;
+	background-color: #35a6ee;
+	position: fixed;
+	bottom: 0;
+}
+.dleft-text{
+	height: 80px;
+	line-height: 40px;
+	color:#FFFFFF;
+/* 	background-image:-webkit-linear-gradient(bottom,#7d1707,#fd8403,#7d1707);
+	-webkit-background-clip:text; 
+	-webkit-text-fill-color:transparent; */
+}
+.ewmimg{
+	width: 80px;
+	height: 80px;
+	flex-shrink: 0;
+}
+/* 底部关注 end */

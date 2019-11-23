@@ -292,7 +292,7 @@
 		
 		<view class="infomation" v-if="isfree==0">
 			<view class="hinttext">
-				本模块发布信息收费,发布<view class="redtext"> 1条=1元.</view>
+				本模块发布信息收费,发布<view class="redtext"> 1条={{categoryinfo.needmoney}}元.</view>
 			</view>
 		</view>
  
@@ -917,7 +917,7 @@ export default {
 				tcinfo.status = 1;
 			}
 			
-			console.log(tcinfo);
+		//	console.log(tcinfo);
 			
 			me.webhttp({
 				url:me.websiteUrl + 'savetcinfo',

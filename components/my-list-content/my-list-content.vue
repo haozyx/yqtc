@@ -4,7 +4,7 @@
 		<view class="listwrap" v-for="(tc,index) in tcinfolist" :key="index">
 			<view class="listwrap1">
 				<!-- <image class="leftimg" @tap="disperinfos" src="../../static/img/index/nantx.png" ></image> -->
-				<image class="leftimg" @tap="disperinfos" :src="tc.tcuserimg" ></image>
+				<image class="leftimg" :src="tc.tcuserimg" ></image>
 				<view class="contentwrap" >
 					<!-- title 左右结构-->
 					<view class="titlewrap">
@@ -271,7 +271,7 @@ export default {
 		},
 		/* 前往支付页面 */
 		gotobuy(tc){
-			
+			/* 发布一条消息5元 */
 			var buy={
 				orderno:'',
 				tcuserid :tc.tcuserid,
@@ -279,7 +279,7 @@ export default {
 				buyname:'发布付费消息',
 				remark:'发布付费消息',
 				/* money:0.01, */
-				money:1,
+				money:5,
 				type:'publish',
 				topdays:0
 			};
@@ -362,7 +362,7 @@ export default {
 							msgid:msgid,
 							buyname:'刷新消息',
 							remark:'刷新消息',
-							money:2,
+							money:0.01,
 							type:'refresh',
 							topdays:0
 						};

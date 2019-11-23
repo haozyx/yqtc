@@ -127,6 +127,67 @@
 			listContent,
 			nodata,
 		},
+		/* 主要做微信的分享 */
+		onShow() {
+			var me = this;
+			var jweixin = require('jweixin-module');
+			console.info(location.href);
+		
+			var signhref = location.href;
+			me.webhttp({
+				url: me.websiteUrl + 'getwxconfig',
+				method: 'GET',
+				data: {
+					url: signhref
+				}
+			}).then(res => {
+				if (res.code == 200) {
+					let wxconfig = res.wxconfig;
+					var config = {
+						debug: false, // 调试，发布的时候改为false
+						appId: wxconfig.appid,
+						nonceStr: wxconfig.nonceStr,
+						timestamp: wxconfig.timestamp,
+						signature: wxconfig.signature,
+						jsApiList: ['updateAppMessageShareData',
+									'updateTimelineShareData',
+									'onMenuShareTimeline',
+									'onMenuShareAppMessage']
+					};
+					//配置微信
+					jweixin.config(config);
+					jweixin.error(err => {
+						console.log('config fail:', err);
+					});
+		
+					jweixin.ready(res => {
+						jweixin.updateAppMessageShareData({ 
+						    title: '便民垣曲-免费发布同城信息', // 分享标题
+						    desc: '便民垣曲，用心打造垣曲本地生活服务平台。让用户足不出户，一切尽在掌握。告别繁琐，一切从简，同城，让出行更美好。', // 分享描述
+						    link: 'https://yohaoyun.com/tch5/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+						    imgUrl: 'https://img.yohaoyun.com/yohaoyun/tongcheng/appimg/bmyqlogo.png', // 分享图标
+						    success: function () {
+						      // 设置成功
+						    }
+						  });
+						jweixin.updateTimelineShareData({
+						    title: '垣曲便民-免费发布同城信息', // 分享标题
+						    link: 'https://yohaoyun.com/tch5/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+						    imgUrl:'https://img.yohaoyun.com/yohaoyun/tongcheng/appimg/bmyqlogo.png', // 分享图标
+						    success: function () {
+						      // 设置成功
+						    }
+						  });  
+					});
+				} else {
+					uni.showToast({
+						title: res.msg,
+						icon: 'none',
+						mask: true
+					});
+				}
+			});
+		},
 		onPageScroll(e) {
 			var me = this;
 			var scrollTop = e.scrollTop;

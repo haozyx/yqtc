@@ -4,7 +4,7 @@
 		<view class="listwrap" v-for="(tc,index) in tcinfolist" :key="index">
 			<view class="listwrap1">
 				<!-- <image class="leftimg" @tap="disperinfos" src="../../static/img/index/nantx.png" ></image> -->
-				<image class="leftimg" @tap="disperinfos" :src="tc.tcuserimg" ></image>
+				<image class="leftimg"  :src="tc.tcuserimg" ></image>
 				<view class="contentwrap" >
 					<!-- title 左右结构-->
 					<view class="titlewrap">
