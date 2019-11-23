@@ -9,7 +9,9 @@
 					<!-- title 左右结构-->
 					<view class="titlewrap">
 						<view class="title-zd" v-if="tc.istop==1">置顶</view>
-						<view class="title-fl">{{tc.msgtypename}}</view>
+						
+						<view class="title-fl" v-if="tc.msgptypeid=='2'">{{tc.msgptypename}}</view>
+						<view class="title-fl" v-if="tc.msgptypeid!='2'">{{tc.msgtypename}}</view>
 						<view class="title-nicheng">{{tc.tcusernickname}}</view>
 						<view class="rightsee" @tap="gotodetail(tc.id)">
 							<image src="https://img.yohaoyun.com/yohaoyun/static/tc/eye.png" class="eyeimg"></image>

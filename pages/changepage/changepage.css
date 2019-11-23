@@ -4,3 +4,80 @@
 	padding: 40upx;
 	font-size: 20px;
 }
+/* 搜索框样式  start*/
+.searchwrap{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: 50upx 20upx 20upx 20upx;
+	
+}
+	
+.bodysearch{
+	display: flex;
+	flex-direction: row;
+	color: #007AFF;
+	background-color: #FFFFFF;
+	height: 30px;
+	border-radius: 5px;
+	padding: 10upx;
+	justify-content: space-between;
+	align-items: center;
+}
+.searchimg{
+	width: 30px;
+	height: 30px;
+}
+.searchtext{
+	color: #2C405A;
+}
+.searchbtn{
+	font-size: 18px;
+	font-weight: bold;
+}
+/* 搜索框样式 end */
+
+/* 首页导航 start */
+.infowrap{
+	display: flex;
+	flex-direction: row;
+	height: 35px;
+	margin-top: 5px;
+	width: 100%;
+	background-color: #FFFFFF;
+	justify-content: center;
+	border-bottom: 1px solid #EEEEEE;
+}
+.infoitem{
+	/* color: #C8C7CC; */
+	height: 35px;
+	line-height: 35px;
+	width: 33%;
+	border-right: #F1F1F1 1px solid;
+	font-size: 14px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.daosanjiao{
+	width: 10px;
+	height: 10px;
+	margin-left: 10px;
+}
+/* 首页导航 end */
+
+/* 置顶start */
+.back-top{
+	position: fixed;
+	bottom:80px;
+	right: 10px;
+	height: 30px;
+	border-radius: 50%;
+	background: #808080;
+}
+.back-top image {
+  width: 30px;
+  height: 30px;
+}
+/* 置顶end */

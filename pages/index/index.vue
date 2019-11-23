@@ -8,7 +8,7 @@
 					<view style="width: 15%;"><view class="searchbtn" @tap="gotosearch"> 搜索 </view></view>
 				</view>
 				<view class="bottomview">
-					本站浏览1205.34万  发布总量:5600
+					本站浏览{{viewsnum}}   发布总量:{{publishnum}}
 				</view>
 			</view>
 		 <!-- 搜索框 end-->
@@ -117,6 +117,9 @@
 					{'name':'生意转让','img':'../../static/img/index/shengyi.png'},
 					{'name':'汽车交易','img':'../../static/img/index/qichejiaoyi.png'},
 					{'name':'二手交易','img':'../../static/img/index/ershou.png'}],
+				/* 本站浏览数据和发布数据 */
+				publishnum:0,
+				viewsnum:0,	
 			}
 		},
 		components:{
@@ -155,7 +158,7 @@
 				}); 
 			}
 			
-			
+			me.getviews();
 			me.gettwocategory();
 			me.buildqmapAndQuery(me.page);
 			 
@@ -167,6 +170,22 @@
 			me.buildqmapAndQuery(me.page);
 		},
 		methods: {
+			/* 获取本站的浏览数据 */
+			getviews(){
+				var me = this;
+				me.webhttp({
+					url:me.websiteUrl + 'getviews',
+					method:'GET',
+					data:{
+							
+					}
+				}).then(res=>{
+					if(res.code == 200){
+						me.publishnum = res.publishnum;
+						me.viewsnum = res.viewsnum;
+					} 	
+				});
+			},
 			/* 打开分类选择框 */
 			showfenleiPicker() {
 				  this.$refs.mpvuePicker.show();

@@ -112,7 +112,7 @@
 			},
 			{
 				"pagePath":"pages/changepage/changepage",
-				"text":"发现",
+				"text":"特色服务",
 				"iconPath":"static/img/tabbar/faxian.png",
 				"selectedIconPath":"static/img/tabbar/faxian_sel.png"
 			},
