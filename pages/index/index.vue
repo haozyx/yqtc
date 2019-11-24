@@ -131,8 +131,7 @@
 		onShow() {
 			var me = this;
 			var jweixin = require('jweixin-module');
-			console.info(location.href);
-		
+		//	console.info(location.href);
 			var signhref = location.href;
 			me.webhttp({
 				url: me.websiteUrl + 'getwxconfig',

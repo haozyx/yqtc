@@ -13,10 +13,10 @@
 						<view class="title-fl" v-if="tc.msgptypeid=='2'">{{tc.msgptypename}}</view>
 						<view class="title-fl" v-if="tc.msgptypeid!='2'">{{tc.msgtypename}}</view>
 						<view class="title-nicheng">{{tc.tcusernickname}}</view>
-						<view class="rightsee" @tap="gotodetail(tc.id)">
+						<!-- <view class="rightsee" @tap="gotodetail(tc.id)">
 							<image src="https://img.yohaoyun.com/yohaoyun/static/tc/eye.png" class="eyeimg"></image>
 							<view class="seetext" >详情</view>
-						</view>
+						</view> -->
 					</view>
 
 					<!-- 内容  start-->
@@ -120,7 +120,9 @@
 						</view>
 					</view>
 					<!-- 显示全文-->
-					<view class="disall" @tap="disorhide(index)">{{clickarry.indexOf(index) != -1? '隐藏' : '显示全文'}}</view>
+<!-- 					<view class="disall" @tap="disorhide(index)">{{clickarry.indexOf(index) != -1? '隐藏' : '显示全文'}}</view> -->
+				 <!-- 1124日修改为直接跳转到详情页-->
+				 <view class="disall" @tap="gotodetail(tc.id)">全文</view>
 				 
 					<!-- 内容  end-->
 					 

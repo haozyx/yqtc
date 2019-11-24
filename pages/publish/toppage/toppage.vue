@@ -138,9 +138,9 @@
 			},
 			/* 再发一条页面 */
 			gotopublish(){
-				uni.redirectTo({
-					url:'../publish'
-				});
+				uni.switchTab({
+					url:'/pages/publish/publish'
+				})
 			},
 			/* 前往查看信息界面 */
 			gotodetail(){
