@@ -107,7 +107,7 @@
 						<!-- 二手交易 end -->
 						
 						<!-- 内容在标签下面 -->
-						<view class="msgcontent">{{tc.msgcontent}}</view>
+						<view class="msgcontent"  @tap="gotodetail(tc.id)">{{tc.msgcontent}}</view>
 						<view class="content-phone">{{tc.contactperson}}-{{tc.contactphone}}</view>
 					
 						<view class="callphone">

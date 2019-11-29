@@ -235,7 +235,7 @@
 			</view>
 			<view class="photo-single jia" v-if="saturation">
 				<avatar selWidth="740upx"
-					selHeight="740upx" 
+					selHeight="900upx" 
 					@upload="myUpload" 
 					:avatarSrc="myimgurl" 
 					stretch="x"

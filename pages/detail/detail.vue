@@ -152,7 +152,7 @@
 		</view>
 		<!-- 微信分享 start -->
 		<view class="ecodewrap">
-			<view class="dleft-text">免费发消息,请关注"垣曲恋爱吧" 长按右侧图片识别二维码</view>
+			<view class="dleft-text">免费发便民消息,请关注【垣曲恋爱吧】长按右侧图片识别二维码</view>
 			<image class="ewmimg" src="https://img.yohaoyun.com/yohaoyun/tongcheng/appimg/love.jpg"></image>
 		</view>
 		
