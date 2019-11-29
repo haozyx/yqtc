@@ -503,7 +503,7 @@ export default {
 			zhuangxiuqingkuang:'请选择',
 			/* 二手交易 */
 			ershoujiaoyitype:'',
-			
+			isvip:0,
 			
 		};
 	},
