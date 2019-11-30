@@ -172,6 +172,7 @@ export default {
 			title:'便民垣曲-免费发布同城信息',
 			clickimgarry: [],
 			userid: 0,
+			msgid:0,
 			tagarry: ['success', 'error', 'warning', 'primary'],
 			bannerimgarry: [{ imgurl: '../../static/img/detail/ad1.jpg' }]
 		};
@@ -181,7 +182,17 @@ export default {
 		var user = me.getGlobalTCUser();
 		if (user) me.userid = user.id;
 		var msgid = e.msgid;
+		me.msgid = msgid;
 		me.getmsginfodetail(msgid);
+	},
+	/* 下拉刷新 */
+	onPullDownRefresh() {
+		var me = this;
+		me.tcbean={ imglist: [], commentlist: [] };
+		me.getmsginfodetail(me.msgid);
+		setTimeout(function () {
+			uni.stopPullDownRefresh();
+		}, 1000);
 	},
 	/* 主要做微信的分享 */
 	onShow() {},

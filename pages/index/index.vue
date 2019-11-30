@@ -127,6 +127,15 @@
 			listContent,
 			nodata,
 		},
+		/* 下拉刷新 */
+		onPullDownRefresh() {
+			var me = this;
+			me.tcinfolist=[];
+			me.buildqmapAndQuery(1);
+			setTimeout(function () {
+				uni.stopPullDownRefresh();
+			}, 1000);
+		},
 		/* 主要做微信的分享 */
 		onShow() {
 			var me = this;
