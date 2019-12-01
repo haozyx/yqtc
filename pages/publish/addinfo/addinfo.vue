@@ -22,7 +22,7 @@
 		<view class="line-wrap"><view class="line"></view></view>
 
 		<!-- 天天拼没有乘车时间 暂时都去掉乘车时间-->
-		<!-- <block v-if="typename!='tiantianpin'">
+		<block v-if="typename!='tiantianpin'">
 			<view class="textwrap"  >
 				<view class="leftwrap"><view class="lefttext">乘车时间 :</view></view>
 				<view class="rightwrap">
@@ -31,7 +31,7 @@
 				</view>
 			</view>
 			<view class="line-wrap"><view class="line"></view></view>
-		</block> -->
+		</block>
 		<view class="textwrap">
 			<view class="leftwrap"><view class="lefttext">乘车人数:</view></view>
 			<view class="rightwrap">
@@ -882,8 +882,8 @@ export default {
 			
 			
 			if(me.ptypename=='shunfengche'){ // 顺风车
-				//tcinfo.chengcheshijian = me.chengcheshijian; 暂时取消乘车时间  -- 后续需要加上
-				tcinfo.chengcheshijian = '2099-12-31 05:00:00';
+				tcinfo.chengcheshijian = me.chengcheshijian; //暂时取消乘车时间  -- 后续需要加上
+				//tcinfo.chengcheshijian = '2099-12-31 05:00:00';
 				tcinfo.chengcherenshu = me.chengcherenshu;
 				tcinfo.chufadi = me.chufadi;
 				tcinfo.mudidi = me.mudidi;

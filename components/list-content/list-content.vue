@@ -62,10 +62,10 @@
 								<view class="content-tag">目的地 :</view>
 								{{tc.mudidi}}
 							</view>
-							<!-- <view v-if="tc.msgtypeid != 12">
+							<view v-if="tc.msgtypeid != 12">
 								<view class="content-tag">出发时间 :</view>
 								{{tc.chengcheshijian}}
-							</view> -->
+							</view>
 							<view>
 								<view class="content-tag">乘客人数 :</view>
 								{{tc.chengcherenshu}}

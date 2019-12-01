@@ -59,10 +59,10 @@
 								<view class="content-tag">目的地 :</view>
 								{{ tcbean.mudidi }}
 							</view>
-							<!-- <view v-if="tcbean.msgtypeid != 12">
+							<view v-if="tcbean.msgtypeid != 12">
 								<view class="content-tag">出发时间 :</view>
 								{{ tcbean.chengcheshijian }}
-							</view> -->
+							</view>
 							<view>
 								<view class="content-tag">乘客人数 :</view>
 								{{ tcbean.chengcherenshu }}
