@@ -4,7 +4,7 @@
 		<view class="timewrap">
 			<view class="viewwrap">
 				<image src="https://img.yohaoyun.com/yohaoyun/static/tc/heart1.png" class="viewleftimg"></image>
-				<view class="view-count">{{tcinfo.msgviews}} 浏览量 、</view>
+				<!-- <view class="view-count">{{tcinfo.msgviews}} 浏览量 、</view> -->
 			</view>
 			<view class="timetext">{{timestampFormat(tcinfo.msgpublishtime)}}</view>
 			<fa-icon class="fa-commenting-o" size="14" style="margin-left: auto;" color="#999999" @tap="dhflag=!dhflag"></fa-icon>
